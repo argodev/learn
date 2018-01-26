@@ -1,4 +1,4 @@
-#include "aux_functions.cpp"
+#include "aux_functions.h"
 #define N 64
 
 int main() {
