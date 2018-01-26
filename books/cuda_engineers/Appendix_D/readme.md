@@ -115,17 +115,17 @@ $ cuda-gdb main
 (cuda-gdb) break kernel.cu:14
 (cuda-gdb) break main.cpp:23
 (cuda-gdb) run  
-next
-print i
-cuda kernel block thread
-cuda block 1,0,0 thread 5,0,0
-print i
-clear kernel.cu:14
-continue
-info locals
-print out[0]@64
-continue
-quit
+(cuda-gdb) next
+(cuda-gdb) print i
+(cuda-gdb) cuda kernel block thread
+(cuda-gdb) cuda block 1,0,0 thread 5,0,0
+(cuda-gdb) print i
+(cuda-gdb) clear kernel.cu:14
+(cuda-gdb) continue
+(cuda-gdb) info locals
+(cuda-gdb) print out[0]@64
+(cuda-gdb) continue
+(cuda-gdb) quit
 ```
 
 
