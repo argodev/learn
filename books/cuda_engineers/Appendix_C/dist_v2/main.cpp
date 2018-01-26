@@ -8,7 +8,7 @@ int main() {
     float out[N] = {0.0f};
 
     // chose a reference value from which distances are measured
-    const float ref 0.5f;
+    const float ref = 0.5f;
 
     // iteration loop computes array of scaled input vlues.
     for (int i = 0; i < N; ++i) {
