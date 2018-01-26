@@ -20,3 +20,21 @@ I worked through this book as part of my degree program as well as in support of
 - [Appendix B: Software Setup](Appendix_B/readme.md)
 - [Appendix C: Need-to-Know C Programming](Appendix_C/readme.md)
 - [Appendix D: CUDA Practicalities: Timing, Profiling, Error Handling, and Debugging](Appendix_D/readme.md)
+
+
+### Purchase Book
+- [CUDA for Engineers (on Amazon)](http://amzn.to/2DH5Cw0)
+
+
+### BibTex citation
+
+```
+@book{Storti:2015:CEI:2911064,
+ author = {Storti, Duane and Yurtoglu, Mete},
+ title = {CUDA for Engineers: An Introduction to High-Performance Parallel Computing},
+ year = {2015},
+ isbn = {013417741X, 9780134177410},
+ edition = {1st},
+ publisher = {Addison-Wesley Professional},
+}
+```
