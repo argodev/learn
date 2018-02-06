@@ -92,16 +92,74 @@ plt.show()
 ![Box Plot](boxplot.png "Box Plot")
 
 
-
-
 Variance (where sample: s, popuation: theta)
 <img src="https://latex.codecogs.com/gif.latex?s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\bar{x})^2}=\frac{1}{n-1}\left(\sum_{i=1}^{n}{x_i^2}-\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}&space;\right)^2\right)" />
 
+For the above data, the squared variance is `379.17`.
+
 Standard Deviation is the square root of the variance squared
 
+For our example, the standard deviation is approximately `19.47`
 
-<img src="" />
-<img src="" />
-<img src="" />
+## Normal Distribution Curves:
+- the range from mu-theta to mu+theata contains approximately 68% of the measurements
+- from mu-2theta to mu+2theata contains 95% of it
+- from mu-3theta to mu+3theata we see 99.7%
+
+## Visualizing data sets
+- Five-Number summary is described above
+- Boxplot is described above (really just a visual version of the 5-number summary)
+- Histograms can often communicate more than a boxplot... shows how the values are distributed over space (see distribution plot above)
+- Quantile Plot: Displays all the data, plots quantile information. For each f value on the x axis, indicates that % of values are below (to the left) of that spot)
+- Quantile-Quantile (Q-Q) plot: Graphs the quantiles of one univarite distributeion against the quantiles of another. Shows if there is a shift occuring between two distributions
+- Scatter Plot: Quick look at bivariate data.
+  - May help you see trends/clusters at quick glance
+  - Can see uncorrelated data
+  - can see negatively correlated/positively correlated data
+
+### Why Visualize?
+- Gain Insight
+- Qualitative overview of large data sets
+- visual proof
+
+## Various Approaches
+- Pixel-Oriented
+- Geometric projection
+- Icon-based
+- Hierarchical
+- Complex relations
+
+__Similarity__: Numerical measure of how alike two objects are. As the number increases, so does similarity. Often 0.0:1.0
+
+__Dissimilarity__: Inverse of the above. Lower numbers are more alike minimum is 0, upper number varies
+
+__Proximity__: measurement of similarity or dissimilarity.
+
+Can use Data matricies and a dissimilarity matrix to show the distance between points.
+
+For _nominal values_, dissimimilarity is a simple binary check (0=same, 1=different)
+
+For _binary_ values,
+Consider symmetric binary dissimilarity or asymmetric binary dissimilarity
+
+
+For _numeric_ values,
+__Minkowski Distance__ is the generic form, where h = the order on the Lh norm
+
+<img src="https://latex.codecogs.com/gif.latex?d(i,j)=\sqrt[h]{(|x_i_1-x_j_1|)^h&plus;(|x_i_2-x_j_2|)^h&plus;...&plus;(|x_i_p-x_j_p|)^h}" />
+
+__Manhattan Distance__ is the L1 norm. Same as Minkowski but h=1
+
+<img src="https://latex.codecogs.com/gif.latex?d(i,j)=(|x_i_1-x_j_1|)&plus;(|x_i_2-x_j_2|)&plus;...&plus;(|x_i_p-x_j_p|)" />
+
+__Euclidean Distance__ is the L2 norm. Same as Minkowski but h=2
+
+<img src="https://latex.codecogs.com/gif.latex?d(i,j)=\sqrt{(|x_i_1-x_j_1|)^2&plus;(|x_i_2-x_j_2|)^2&plus;...&plus;(|x_i_p-x_j_p|)^2}" />
+
+
+For _ordinal_ values,
+
+For attributes of mixed types,
+
 
 
