@@ -32,12 +32,9 @@ This means to do exactly what it sounds like... calculate the middle point, or t
 
 __Mean__: Average
 
-Sample: <img src="https://latex.codecogs.com/gif.latex?\bar{x}=\frac{1}{n}\sum_{i=1}^{n}{x_i}" />
+Sample: <img src="https://latex.codecogs.com/gif.latex?\bar{x}=\frac{1}{n}\sum_{i=1}^{n}{x_i}" /> or Full Population: <img src="https://latex.codecogs.com/gif.latex?\mu=\frac{\sum{x}}{N}" />
 
-Using our data from above, the mean is `696`.
-or
-
-Full Population: <img src="https://latex.codecogs.com/gif.latex?\mu=\frac{\sum{x}}{N}" />
+Using our data from above, the mean is `58`.
 
 Alternatively, you can use the Trimmed mean (chops extreme values). This requires the provision of a weight assigned to each value (_where does this come from?_)
 
@@ -63,6 +60,17 @@ If plotted, where is the "hump"?
 - Symmetric: hump is in the center. Often called "normal" distribution
 - Negatively skewed: hump is on the left side. Mode is less than both median and mean
 - Postively skewed: hump is on the right. Mode is greater than both median and mean
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = [30, 36, 47, 50, 52, 52, 56, 60, 63, 70, 70, 110]
+sns.set(color_codes=True)
+sns.distplot(data)
+plt.show()
+```
+![Distribution](distribution.png "Distribution")
 
 ### Measuring the Dispersion of Data
 - Quartiles: Q1 (25th percentile), Q3 (75th percentile)
