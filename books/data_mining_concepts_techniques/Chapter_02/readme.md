@@ -26,4 +26,5 @@
 
 Mean
 
-$$\bar{x} = \frac{1}{n} $$
+<img src="https://latex.codecogs.com/gif.latex?\bar{x}&space;=&space;\frac{1}{n}\sum_{x=1}^{n}{x_i}" />
+
