@@ -191,7 +191,7 @@ A more clearly-worked out example:
 
 <img src="https://latex.codecogs.com/gif.latex?y=(3,0,2,0,1,1,0,1,0,1)" />
 
-<img src="https://latex.codecogs.com/gif.latex?x&space;\cdot&space;y&space;=&space;(5\ast3)&plus;(0\ast0)&plus;(3\ast2)&plus;(0\ast0)&plus;(2\ast1)&plus;(0\ast1)&plus;(0\ast0)&plus;(2\ast1)&plus;(0\ast0)&plus;(0\ast1)" />
+<img src="https://latex.codecogs.com/gif.latex?x&space;\cdot&space;y&space;=&space;(5\ast3)&plus;(0\ast0)&plus;(3\ast2)&plus;(0\ast0)&plus;(2\ast1)&plus;(0\ast1)&plus;(0\ast0)&plus;(2\ast1)&plus;(0\ast0)&plus;(0\ast1)&space;=&space;25" />
 
 <img src="https://latex.codecogs.com/gif.latex?\left&space;\|&space;x&space;\right&space;\|=\sqrt{5^2&plus;0^2&plus;3^2&plus;0^2&plus;2^2&plus;0^2&plus;0^2&plus;2^2&plus;0^2&plus;0^2}&space;=&space;6.48" />
 
