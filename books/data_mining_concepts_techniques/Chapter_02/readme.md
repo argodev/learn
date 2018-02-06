@@ -73,10 +73,26 @@ plt.show()
 ![Distribution](distribution.png "Distribution")
 
 ### Measuring the Dispersion of Data
-- Quartiles: Q1 (25th percentile), Q3 (75th percentile)
-- Interquartile range: IQR = Q3-Q1
-- Five number summary: min, Q1, Median, Q3, max (note that this is *not* the mean)
+- Quartiles: Q1 (25th percentile - `47`), Q3 (75th percentile - `63`)
+- Interquartile range: IQR = Q3-Q1 or `16`
+- Five number summary: min, Q1, Median, Q3, max (note that this is *not* the mean). Our values are `30, 47, 54, 63, 110`
 - Boxplot: visible version of the five-number summary. Median is marked, box start at Q1 and ends at Q3. Whiskers are at min/max unless there are outliers (> 1.5xIQR). If there exists outliers, the Whiskers mark the min/max values that are *not* outliers and then the outliers are marked individually.
+
+> Note: For this data set, the IQR is `16`. Therefore any value more than 24 away from the median is considered an outlier (range is `30 - 78`).
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = [30, 36, 47, 50, 52, 52, 56, 60, 63, 70, 70, 110]
+sns.set(color_codes=True)
+sns.boxplot(data=data)
+plt.show()
+```
+![Box Plot](boxplot.png "Box Plot")
+
+
+
 
 Variance (where sample: s, popuation: theta)
 <img src="https://latex.codecogs.com/gif.latex?s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\bar{x})^2}=\frac{1}{n-1}\left(\sum_{i=1}^{n}{x_i^2}-\frac{1}{n}\left(\sum_{i=1}^{n}{x_i}&space;\right)^2\right)" />
