@@ -186,10 +186,16 @@ For documents, cosine similarity between two term-frequency vectors is often use
 <img src="https://latex.codecogs.com/gif.latex?sim(x,y)=\frac{x\cdot&space;y}{\left&space;\|&space;x&space;\right&space;\|\left&space;\|y&space;\right&space;\|}" />
 
 A more clearly-worked out example:
+
 <img src="https://latex.codecogs.com/gif.latex?x=(5,0,3,0,2,0,0,2,0,0)" />
+
 <img src="https://latex.codecogs.com/gif.latex?y=(3,0,2,0,1,1,0,1,0,1)" />
+
 <img src="https://latex.codecogs.com/gif.latex?x&space;\cdot&space;y&space;=&space;(5\ast3)&plus;(0\ast0)&plus;(3\ast2)&plus;(0\ast0)&plus;(2\ast1)&plus;(0\ast1)&plus;(0\ast0)&plus;(2\ast1)&plus;(0\ast0)&plus;(0\ast1)" />
+
 <img src="https://latex.codecogs.com/gif.latex?\left&space;\|&space;x&space;\right&space;\|=\sqrt{5^2&plus;0^2&plus;3^2&plus;0^2&plus;2^2&plus;0^2&plus;0^2&plus;2^2&plus;0^2&plus;0^2}&space;=&space;6.48" />
+
 <img src="https://latex.codecogs.com/gif.latex?\left&space;\|&space;y&space;\right&space;\|=\sqrt{3^2&plus;0^2&plus;2^2&plus;0^2&plus;1^2&plus;1^2&plus;0^2&plus;1^2&plus;0^2&plus;1^2}&space;=&space;4.12" />
+
 <img src="https://latex.codecogs.com/gif.latex?sim(x,y)=0.94" />
 
