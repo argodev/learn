@@ -137,13 +137,33 @@ __Proximity__: measurement of similarity or dissimilarity.
 
 Can use Data matricies and a dissimilarity matrix to show the distance between points.
 
-For _nominal values_, dissimimilarity is a simple binary check (0=same, 1=different)
+### For _nominal values
 
-For _binary_ values,
-Consider symmetric binary dissimilarity or asymmetric binary dissimilarity
+dissimimilarity is a simple binary check (0=same, 1=different)
+
+<img src="https://latex.codecogs.com/gif.latex?d(i,j)=\frac{p-m}{p}" />
+
+where `m` is the number of matched attributes and `p` is the total number of attributes
 
 
-For _numeric_ values,
+### For _binary_ values,
+
+Consider symmetric binary dissimilarity
+
+<img src="https://latex.codecogs.com/gif.latex?d(i,j)=\frac{r&plus;s}{q&plus;r&plus;s&plus;t}" />
+
+And asymmetric binary dissimilarity
+<img src="https://latex.codecogs.com/gif.latex?d(i,j)=\frac{r&plus;s}{q&plus;r&plus;s}" />
+
+Where:
+- `q` is the number of attributes that `== 1` given i or j
+- `r` is the number of attributes that `== 1` given i and `== 0` given j
+- `s` is the number of attributes that `== 0` given i and `== 1` given j
+- `t` is the number of attributes that `== 0` given i or j
+- `p` is the total number of attributes
+
+### For _numeric_ values,
+
 __Minkowski Distance__ is the generic form, where h = the order on the Lh norm
 
 <img src="https://latex.codecogs.com/gif.latex?d(i,j)=\sqrt[h]{(|x_i_1-x_j_1|)^h&plus;(|x_i_2-x_j_2|)^h&plus;...&plus;(|x_i_p-x_j_p|)^h}" />
@@ -157,9 +177,12 @@ __Euclidean Distance__ is the L2 norm. Same as Minkowski but h=2
 <img src="https://latex.codecogs.com/gif.latex?d(i,j)=\sqrt{(|x_i_1-x_j_1|)^2&plus;(|x_i_2-x_j_2|)^2&plus;...&plus;(|x_i_p-x_j_p|)^2}" />
 
 
-For _ordinal_ values,
+### For _ordinal_ values,
+
+<img src="" />
 
 For attributes of mixed types,
 
+<img src="" />
 
 
