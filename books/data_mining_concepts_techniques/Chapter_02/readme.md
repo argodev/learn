@@ -25,9 +25,9 @@
 ### Measuring Central Tendency
 This means to do exactly what it sounds like... calculate the middle point, or tendency of the data... where do most of the values sort of go?
 
-__Mean__
+__Mean__: Average
 
-Sample: <img src="https://latex.codecogs.com/gif.latex?\bar{x}=\frac{1}{n}\sum_{x=1}^{n}{x_i}" />
+Sample: <img src="https://latex.codecogs.com/gif.latex?\bar{x}=\frac{1}{n}\sum_{i=1}^{n}{x_i}" />
 
 or
 
@@ -37,11 +37,23 @@ Alternatively, you can use the Trimmed mean (chops extreme values). This require
 
 <img src="https://latex.codecogs.com/gif.latex?\bar{x}=\frac{\sum_{i=1}^{n}{w_ix_i}}{\sum_{i=1}^{n}{w_i}}" />
 
+__Median__: middle value of set.
+<img src="https://latex.codecogs.com/gif.latex?{median}=L_1\left(\frac{\frac{n}{2}-\left(\sum{f}&space;\right&space;)l}{f_{median}}&space;\right&space;)c" />
+
+__Mode__: Value (or values) that occurs most frequently in the data. Can end up with bimodal or trimodal data
+<img src="https://latex.codecogs.com/gif.latex?{mean}-{mode}=3x({mean}-{median})" />
+
+### Symmetric vs. Skewed Data
+If plotted, where is the "hump"?
+- Symmetric: hump is in the center. Often called "normal" distribution
+- Negatively skewed: hump is on the left side. Mode is less than both median and mean
+- Postively skewed: hump is on the right. Mode is greater than both median and mean
+
+### Measuring the Dispersion of Data
 
 
 
-<img src="" />
-<img src="" />
+
 <img src="" />
 
 
