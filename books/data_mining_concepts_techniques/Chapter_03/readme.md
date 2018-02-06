@@ -15,6 +15,9 @@ Many ways to deal with missing data
 - Equal Depth (frequency)
 
 ## Binning Methods for Data Smoothing
+Once your data has been binned (via equal-width or equal-depth), you may choose to smooth the data. Common approaches include mean (all values in the bin are replaced with the average) or boundary (first half of the values get the min boundary value, second half get the upper boundary value)
+
+Note, similar approaches can be used for data reduction... in this case, N values may be replaced with a single that is the mean, etc.
 
 ## Data Integration
 
@@ -23,11 +26,19 @@ Many ways to deal with missing data
 ## Normalization
 
 ### Min-Max
+Linear Transformation on the original data
+
+<img src="https://latex.codecogs.com/gif.latex?v'_i=\frac{v_i-min_A}{max_A-min_A}(newMax_A-newMin_A)&plus;newMin_A" />
 
 ### Z-score
+Values are normalized based on the mean and standard deviation of A
+
+<img src="https://latex.codecogs.com/gif.latex?v'_i=\frac{v_i-\bar{A}}{\sigma_A}" />
 
 ## Data Reduction
 
+### Dimensionality reduction
+Reduce the nubmer of random variables, or attributes under consideration. Valid approaches include wavelet transforms, principlae conomponent analysis, or attribute subest selection.
 
 ## Data Cube Aggregation
 
@@ -35,7 +46,8 @@ Many ways to deal with missing data
 
 ## Decision Tree Induction
 
-## Numerosity Reduction
+### Numerosity Reduction
+Replace existing representations with smaller, less-verbose options.
 
 ## Regression and Log-Linear Models
 
