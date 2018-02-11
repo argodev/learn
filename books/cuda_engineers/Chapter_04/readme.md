@@ -55,4 +55,8 @@ I will say, I am impressed by how smoothly the application redraws and responds 
 
 ## Application: Stability
 
-The test of any "framework" or "scaffolding" is a working sample, and this next section of the book aims to do just that.
+The test of any "framework" or "scaffolding" is a working sample, and this next section of the book aims to do just that. They start by describing the problem they want to visualize: stability of a linear oscillator. While not entirely necessary, they then explain how they take a single sedcond-order ordinary differential equation (ODE) and re-work it into a system of two first-order ODEs for the purpose of the application. They proceed to explain that the reasoning behind this is to ``compute a solution that is a sequence of states, arising from a single initial state, in a method that is completely serial''. This approach lends itself very well to a massively-parallel platform such as the GPU.
+
+The core premise of this example (to show how easily the flashlight app could be modified to do something real) is borne out. There are significant changes to `kernel.cu` as this is where the actual calculations occur. A minor change (function declaration) was made to `kernel.h`. A few changes were made to `interactions.h` only to adjust the way the keyboard controlled the application. Finally, the `render()` method in `main.cpp` was adjusted slightly for the change in the kernel launcher and for some cosmetic changes to the displayed window's title bar.
+
+![Stability](stability.png)
