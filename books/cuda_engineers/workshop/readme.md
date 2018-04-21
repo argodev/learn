@@ -9,7 +9,7 @@ https://developer.nvidia.com/cuda-education
 ### Introduction
 
 - Why would we want to use GPUs?
-- How do they differ from CPUs? 
+- How do they differ from CPUs?
 - What other processor types are there? (ASIC, FPGA, DSP, etc.)
 - What caused the rise in popularity?
 - What are they good for?
@@ -17,7 +17,7 @@ https://developer.nvidia.com/cuda-education
 - Other methodologies (OpenCL? OpenACC, etc.)
 - CUDA Specifics?
 
-### Setup/Testing 
+### Setup/Testing
 
 - Cover appendicies here
 - Get machines up and running
@@ -28,14 +28,14 @@ https://developer.nvidia.com/cuda-education
 
 - Dig deeper into the hardware and how it affects the processing (tri-mode grids)
 - Do we need this section?
-- Might cover some of the Chapter 2 overview details (execution context, syntax, terms, etc.) 
+- Might cover some of the Chapter 2 overview details (execution context, syntax, terms, etc.)
 - Use as opportunity to clarify some of the things seen in the setup/testing section.
 - Walk through Chapter 3 quickly... distv2, the standard workflow section, cudaMallocManaged, etc.
 
 ### 2D Real-World Apps
 
 - This is where things start to get interesting. Take this section and do a deep-walk through on Chapter 4... There's alot to consume and alot to appreciate.
-- Skip the dist_2d section (besides maybe discussion) and move to dist_rgba. 
+- Skip the dist_2d section (besides maybe discussion) and move to dist_rgba.
 - Once that is finished, walk carefully through the flashlight app example and ensure everyone can make it work. Let them play with it a bit and see how fast/smoothly it renders on their machines
 - The next section walks through the generalization of the flashlight app... the stability app... walk through the similarities and differences and get it working.
 - Discuss how this might map to real-world applications
@@ -43,11 +43,13 @@ https://developer.nvidia.com/cuda-education
 ## Day 2
 
 ### Deep dive on Shared Memory
+
 This is all about chapter 5
 neighboring cells, etc.
 
 ### Reduction/Atomics
-Similar to the above 
+
+Similar to the above
 
 - [Chapter 5: Stencils and Shared Memory](Chapter_05/readme.md)
 - [Chapter 6: Reduction and Atomic Functions](Chapter_06/readme.md)
