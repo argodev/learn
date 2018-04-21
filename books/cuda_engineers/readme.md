@@ -1,4 +1,5 @@
 # CUDA for Engineers
+
 _An Introduction to High-Performance Parallel Computing_
 
 I worked through this book as part of my degree program as well as in support of my general work efforts. I selected this book as it appeared to be focused much more on the practical aspects of using CUDA than the theoretical.
@@ -8,6 +9,7 @@ It is important to acknowlege that I claim very little ownership over the conten
 > NOTE: My initial pass through this book was focused purely on a Linux-based system. As such, my comments/reviews/testing were targeted at that system only. My development machine was a HP G4 Zbook with an nVida P3000 graphics card running Ubuntu 17.04
 
 ## Contents
+
 - [Chapter 1: First Steps](Chapter_01/readme.md)
 - [Chapter 2: CUDA Essentials](Chapter_02/readme.md)
 - [Chapter 3: From Loops to Grids](Chapter_03/readme.md)
@@ -23,14 +25,19 @@ It is important to acknowlege that I claim very little ownership over the conten
 - [Appendix C: Need-to-Know C Programming](Appendix_C/readme.md)
 - [Appendix D: CUDA Practicalities: Timing, Profiling, Error Handling, and Debugging](Appendix_D/readme.md)
 
+### Workshop
+
+An outline for a simple, 2-day workshop on CUDA programming based on the material included in this book (and others)
+
+- [Workshop](workshop/readme.md)
 
 ### Purchase Book
-- [CUDA for Engineers (on Amazon)](http://amzn.to/2DH5Cw0)
 
+- [CUDA for Engineers (on Amazon)](http://amzn.to/2DH5Cw0)
 
 ### BibTex citation
 
-```
+``` text
 @book{Storti:2015:CEI:2911064,
  author = {Storti, Duane and Yurtoglu, Mete},
  title = {CUDA for Engineers: An Introduction to High-Performance Parallel Computing},
