@@ -31,3 +31,8 @@ $ ./nbody -benchmark -cpu
 As recommended in the text, I also ran `./volumeRender` a bit and experimented with interacting with data in real time.
 
 I went ahead and set up `dist_v1` and `dist_v2` as instructed, however, becuase I walked through Appendix C, these were already done and tested. I reconfirmed functionality and consistency between the two of them before wrapping up the first chapter.
+
+
+[<< Previous ](..//readme.md)
+|
+[ Next >>](../Chapter_02/readme.md)

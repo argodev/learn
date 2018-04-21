@@ -74,7 +74,7 @@ if (errAsync != cudaSuccess)
 
 A working example of this is provided in the `dist_v2_cuda_errors` directory.
 
-The authors also demonstrate a guard against over-loading the device by checking for device properties. They further demonstrate how to get/check the currently-available device properties and demonstrate it. 
+The authors also demonstrate a guard against over-loading the device by checking for device properties. They further demonstrate how to get/check the currently-available device properties and demonstrate it.
 
 ```c
 __global__
@@ -114,7 +114,7 @@ $ cuda-gdb main
 (cuda-gdb) show cuda software_preemption
 (cuda-gdb) break kernel.cu:14
 (cuda-gdb) break main.cpp:23
-(cuda-gdb) run  
+(cuda-gdb) run
 (cuda-gdb) next
 (cuda-gdb) print i
 (cuda-gdb) cuda kernel block thread
@@ -140,3 +140,7 @@ Data transfer time (ms): 13.638000
 ========= ERROR SUMMARY: 0 errors
 
 ```
+
+[<< Previous](../Appendix_C/readme.md)
+|
+[Next >>](../workshop/readme.md)

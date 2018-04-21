@@ -1,6 +1,5 @@
 # Chapter 5: Stencils and Shared Memory
 
-
 Discussion of Host Memory, Global Memory, Shared Memory, and register memory
 
 Discussion of Data independent and data interdependency
@@ -21,3 +20,6 @@ Discuss the differences in perf in the three approaches to sharpening (dev cost 
 
 $ nvvp &
 
+[<< Previous](../Chapter_04/readme.md)
+|
+[Next >>](../Chapter_06/readme.md)

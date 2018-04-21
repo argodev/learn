@@ -60,3 +60,8 @@ The test of any "framework" or "scaffolding" is a working sample, and this next 
 The core premise of this example (to show how easily the flashlight app could be modified to do something real) is borne out. There are significant changes to `kernel.cu` as this is where the actual calculations occur. A minor change (function declaration) was made to `kernel.h`. A few changes were made to `interactions.h` only to adjust the way the keyboard controlled the application. Finally, the `render()` method in `main.cpp` was adjusted slightly for the change in the kernel launcher and for some cosmetic changes to the displayed window's title bar.
 
 ![Stability](stability.png)
+
+
+[<< Previous ](../Chapter_03/readme.md)
+|
+[ Next >>](../Chapter_04/readme.md)

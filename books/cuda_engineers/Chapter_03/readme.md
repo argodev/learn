@@ -14,8 +14,12 @@ Whereas `dist_v1` showed how to take an existing application and run a portion o
 - "Launch a kernel that does a significant amount of work (so the benefits of massive parallelism are significant compared to the cost of memory transfers)"
 - "Copy the results back to the host _only once_."
 
-
 __Note__: There is a side-node discussion in the text regarding the way one calculates the block size when initializing the kernel. The authors quite properly highlight the fact that, in integer arithmetic, 64/32 = 2 but so also 65/32 = 2. This matters in that it is easy to miss and can result in the "extra" part of the data never being processed by the kernel. A common approach to sovling this is forcing the kernel to over-allocate space (blocks) to pick up any remainder. One way to accomplish this is rather than using `N/TPB`, you could use `(N+TPB-1)/TPB` which ensures that you will always allocate slightly more space than needed.
 
 ## Introduction to `cudaMallocManaged()`
+
 The chapter ends up with another visit to the `dist_v2` application to introduce the `cudaMallocManaged()` function. This is a means of allocating data once that is accessible both to the host and the device. It is important to clarify that, at this point, this is primarily syntactic sugar over the move operations we have seen previously. The key difference is that the data is moved back and forth with far less code-based ceremony. As with many "optimizations", you may choose to ignore this option and take explicit control of when data is being moved back and forth (due to performance considerations). It _does_ however, greatly simplify the reading of the code.
+
+[<< Previous ](../Chapter_02/readme.md)
+|
+[ Next >>](../Chapter_04/readme.md)

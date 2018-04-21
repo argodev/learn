@@ -11,3 +11,7 @@ CUDA API and C Language extensions are covered next and the `<<< >>>` symbols ar
 The chapter wraps up with a brief touch on dimension variables, memory accesses CUDA-specific types, and some additional functions such as memory copy operations (`cudaMalloc()`, `cudaMemcpy()`, `cudaFree()`) and syncrhonization methods (`__syncThreads()` and `cudaDeviceSynchronize()`). A few comments regarding Dynamic Parallelisim are also included for context.
 
 There are no code samples/exercises in this chapter.
+
+[<< Previous ](../Chapter_01/readme.md)
+|
+[ Next >>](../Chapter_02/readme.md)

@@ -30,6 +30,6 @@ I poked around on the nvidia website for information about my GPU. I found the [
 | PCIe | 3 |
 | Floating Point Performance | 3.1 |
 
-
-
-test
+[<< Previous](../Chapter_09/readme.md)
+|
+[Next >>](../Appendix_B/readme.md)

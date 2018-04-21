@@ -240,3 +240,7 @@ Continuing.
 ```
 
 Note, however, that the print command in the debugger is modified. Rather than simply saying `print out` (asking it to print the contents of the `out` variable), we issued a command like: `print out[5000]@100` which tells the debugger to print to the console 100 values of out starting at the 5,000th index.
+
+[<< Previous](../Appendix_B/readme.md)
+|
+[Next >>](../Appendix_D/readme.md)
