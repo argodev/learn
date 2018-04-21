@@ -12,3 +12,8 @@ I thought that, in the spirit of this last chapter, there might be value in shar
 - [CUDA by Example (free book excerpt)](https://developer.download.nvidia.com/books/cuda-by-example/cuda-by-example-sample.pdf)
 - [PyCUDA Tutorial](https://documen.tician.de/pycuda/tutorial.html)
 - [OLCF Tutorials (Filter by CUDA)](https://www.olcf.ornl.gov/for-users/training/tutorials/)
+
+
+[<< Previous ](../Chapter_08/readme.md)
+|
+[ Next >>](../Appendix_A/readme.md)
