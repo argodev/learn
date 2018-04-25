@@ -1,5 +1,7 @@
 # Appendix B: Software Setup
 
+In contrast to the prior appendix, the purpose here is to ensure that the software stack supporting the GPU is installed and available. The routines included are simple but confirm that you should be able to write code that talks to the card and get results.
+
 ## Linux Setup
 
 I had followed a number of steps previously (before getting this book) so I simply jumped to the validation steps.
