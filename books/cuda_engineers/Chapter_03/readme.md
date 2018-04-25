@@ -14,7 +14,7 @@ Whereas `dist_v1` showed how to take an existing application and run a portion o
 - "Launch a kernel that does a significant amount of work (so the benefits of massive parallelism are significant compared to the cost of memory transfers)"
 - "Copy the results back to the host _only once_."
 
-__Note__: There is a side-node discussion in the text regarding the way one calculates the block size when initializing the kernel. The authors quite properly highlight the fact that, in integer arithmetic, 64/32 = 2 but so also 65/32 = 2. This matters in that it is easy to miss and can result in the "extra" part of the data never being processed by the kernel. A common approach to sovling this is forcing the kernel to over-allocate space (blocks) to pick up any remainder. One way to accomplish this is rather than using `N/TPB`, you could use `(N+TPB-1)/TPB` which ensures that you will always allocate slightly more space than needed.
+__Note__: There is a side-bar discussion in the text regarding the way one calculates the block size when initializing the kernel. The authors quite properly highlight the fact that, in integer arithmetic, 64/32 = 2 but so also 65/32 = 2. This matters in that it is easy to miss and can result in the "extra" part of the data never being processed by the kernel. A common approach to sovling this is forcing the kernel to over-allocate space (blocks) to pick up any remainder. One way to accomplish this is rather than using `N/TPB`, you could use `(N+TPB-1)/TPB` which ensures that you will always allocate slightly more space than needed.
 
 ## Introduction to `cudaMallocManaged()`
 
