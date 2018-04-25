@@ -28,6 +28,8 @@ $ ./nbody -benchmark -cpu
 
 ```
 
+It is obvious from the numbers recorded above that the nbody benchmark ran significantly slower on the CPU than on the GPU. These numbers provide a strong justification for looking into GPU programming to aid in certain types of calculations.
+
 As recommended in the text, I also ran `./volumeRender` a bit and experimented with interacting with data in real time.
 
 I went ahead and set up `dist_v1` and `dist_v2` as instructed, however, becuase I walked through Appendix C, these were already done and tested. I reconfirmed functionality and consistency between the two of them before wrapping up the first chapter.
