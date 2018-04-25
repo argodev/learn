@@ -1,5 +1,7 @@
 # Appendix A: Hardware Setup
 
+The purpose of this appendix is to ensure that the hardware setup is in place and that everything is working as it should. To do this, it runs through a handful of diagnostic routines. The output of these on my system are listed below.
+
 ## Checking for an NVIDIA GPU: Linux
 
 ```bash
