@@ -11,15 +11,10 @@ The chapter starts with a discussion of the different types of memory available:
 
 The authors walk the reader through an example of computing a derivative using global memory. While this functions as it should, they use it as a means of highlighting the negative use scenarios of global memory. In this case, every element in the input data gets read 3x, resulting in latency due to memory transfer costs.
 
-Discuss "halo cells"
+The authors use the term _halo cells_ to refer to the cells/data added to the beginning/end of any array to ensure that the calcuations performed on the points of interest are calculated properly. This might involve copying a few cells from the beginning of the array to the end to ensure the calculations performed on the actual tail of the data have the input values needed.
 
-Discuss Stencils == filters == convolutions
+> A comment on nomenclature: From my reading of the text, "stencils" is the same as "filters" is the same as "convolutions". Depending on your background (image processing, signal processing, etc.) various of these words may resonate more with you. I called it out as "filters" and "convolutions" are familar to me whereas "stencils" are not.
 
-Discuss the extern call
-
-Discuss the 5-point stencil
-
-Discuss some of the assumptions made (air boundaries, etc.)
 
 ![Heat](heat.png)
 
