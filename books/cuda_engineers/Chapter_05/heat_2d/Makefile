@@ -7,9 +7,9 @@ else
 	LDFLAGS += -lglut -lGL -lGLU -lGLEW
 endif
 
-NVCC = /usr/local/cuda-9.0/bin/nvcc
+NVCC = /usr/local/cuda-9.1/bin/nvcc
 NVCC_FLAGS = -g -G -Xcompiler "-Wall -Wno-deprecated-declarations"
-INC = -I/usr/local/cuda-9.0/common/inc
+INC = -I/usr/local/cuda-9.1/common/inc
 
 all: main
 
