@@ -1,4 +1,4 @@
-NVCC = /usr/local/cuda-9.0/bin/nvcc
+NVCC = /usr/local/cuda-9.1/bin/nvcc
 NVCC_FLAGS = -g -G -Xcompiler -Wall
 
 all: main
