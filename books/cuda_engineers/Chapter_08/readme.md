@@ -35,21 +35,32 @@ This example is a simple modification of the centroid application shown in Chapt
 
 ## cuRAND
 
+In prior examples we utilized the CPU for generating random numbers. In this example we use `cuRAND` to create pseudo-random numbers on the GPU. The code sample is a direct port of the _Estimaing Pi with fusion_ example above, but with the random number generator changed.
 
 
 ## NPP (NVIDIA Performance Primitives)
+NPP is a collection of libraries that provide performance-optimized versions of common image and scientific operations. In this first example, we take the sharpening application from Chapter 5 and re-work it using NPP.
+
+> NOTE: I ran into some issues getting this to build. Both the book sample and the NVIDIA documentation online suggested that I should reference part of this library by including `-lnppi_static` in my makefile. However, this didn't seem to work on my envrionment. As of version 9 of the CUDA SDK, they have split this into sub libraries and I needed to include a specific library (`-lnppif_static`) to get this sample to work.
 
 
-## cuSOLVER
+![Butterfly](sharpening.png)
 
-## cuBLAS
+The text provides some code snippets for computing both the distance between two images as well as converting color scales. They have not assembled these into working samples and are, therefore, not included in this repository.
 
 
+## cuSOLVER and cuBLAS
+cuBLAS is the NVIDIA implementation of the standard _Basic Linear Algebra Subprograms (BLAS)_ library that is well known in the technical computing arena. cuSolver is the CUDA version of the _Linear Algebra Package (LAPACK)_. This example introduces the libraries in the form of solving a system of linear equations.
+
+> NOTE: I again ran into some issues getting this to build properly. Both the book (and the web sample) had make files that were missing a dependency in the __LIBS__ property. The key was to add `-lcusparse_static` to the makefile and things proceeded fine from there.
 
 ## cuDNN
 
+I was hoping the authors would dig in to cuDNN as I have a number of colleages that utilize this library, but alas, they simply mention it is important and point the reader to the NVIDIA site for more information.
+
 ## ArrayFire
 
+Similar to their handling of cuDNN, the coverage of ArrayFire is simply to mention that it exists, that it may be more familiar to those coming from a Matlab background, and to point you to the documentation for more information.
 
 
 
