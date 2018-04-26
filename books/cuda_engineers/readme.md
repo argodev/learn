@@ -8,6 +8,8 @@ It is important to acknowlege that I claim very little ownership over the conten
 
 > NOTE: My initial pass through this book was focused purely on a Linux-based system. As such, my comments/reviews/testing were targeted at that system only. My development machine was a HP G4 Zbook with an nVida P3000 graphics card running Ubuntu 17.04
 
+> NOTE: While performing the final work on this book, the NVIDIA drivers and toolkits updated from 9.0 to 9.1. As such, some of the paths in the make files point to 9.0 and others to 9.1. Please be aware of these issues and make adjustments as appropriate.
+
 ## Contents
 
 - [Chapter 1: First Steps](Chapter_01/readme.md)

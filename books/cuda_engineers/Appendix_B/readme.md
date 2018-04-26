@@ -10,10 +10,10 @@ I had followed a number of steps previously (before getting this book) so I simp
 $ nvcc --version
 nvcc: NVIDIA (R) Cuda compiler driver
 Copyright (c) 2005-2017 NVIDIA Corporation
-Built on Fri_Sep__1_21:08:03_CDT_2017
-Cuda compilation tools, release 9.0, V9.0.176
+Built on Fri_Nov__3_21:07:56_CDT_2017
+Cuda compilation tools, release 9.1, V9.1.85
 
-~/cuda/NVIDIA_CUDA-9.0_Samples/1_Utilities/deviceQuery$ ./deviceQuery
+~/cuda/NVIDIA_CUDA-9.1_Samples/1_Utilities/deviceQuery$ ./deviceQuery
 ./deviceQuery Starting...
 
  CUDA Device Query (Runtime API) version (CUDART static linking)
@@ -21,9 +21,9 @@ Cuda compilation tools, release 9.0, V9.0.176
 Detected 1 CUDA Capable device(s)
 
 Device 0: "Quadro P3000"
-  CUDA Driver Version / Runtime Version          9.0 / 9.0
+  CUDA Driver Version / Runtime Version          9.1 / 9.1
   CUDA Capability Major/Minor version number:    6.1
-  Total amount of global memory:                 6056 MBytes (6350045184 bytes)
+  Total amount of global memory:                 6078 MBytes (6373572608 bytes)
   (10) Multiprocessors, (128) CUDA Cores/MP:     1280 CUDA Cores
   GPU Max Clock rate:                            1215 MHz (1.22 GHz)
   Memory Clock rate:                             3504 Mhz
@@ -55,7 +55,7 @@ Device 0: "Quadro P3000"
   Compute Mode:
      < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
 
-deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 9.0, CUDA Runtime Version = 9.0, NumDevs = 1
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 9.1, CUDA Runtime Version = 9.1, NumDevs = 1
 Result = PASS
 
 ```
