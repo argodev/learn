@@ -44,18 +44,33 @@ https://developer.nvidia.com/cuda-education
 
 ### Deep dive on Shared Memory
 
-This is all about chapter 5
-neighboring cells, etc.
+- Spend time talking about thread interactions, shared memory, etc.
+- work through code examples (heat and sharpening)
+- spend *some* time with the perf tool and the sharpening code, but don't let it get carried away... it would be easy to spend too much time here
 
 ### Reduction/Atomics
 
-Similar to the above
+- Briefly explain the role of atomics/reductions (e.g. map reduce lite)
+- focus on the second example (map/image) and try to ensure that they are able to get it working as well as understand what happened.
 
-- [Chapter 5: Stencils and Shared Memory](Chapter_05/readme.md)
-- [Chapter 6: Reduction and Atomic Functions](Chapter_06/readme.md)
-- [Chapter 7: Interacting with 3D Data](Chapter_07/readme.md)
-- [Chapter 8: Using CUDA Libraries](Chapter_08/readme.md)
-- [Chapter 9: Exploring the CUDA Ecosystem](Chapter_09/readme.md)
+### 3D Data
+
+- This session could be skipped if needed
+- The example is interesting but feels a bit of a further stretch for most and I'd rather focus on the Chapter 8 content if limited
+
+### CUDA Libraries
+
+- Plan to spend most of the afternoon here
+- Walk through the libraries referenced in Chapter 8, talk about how to use them
+- work through the examples (manually reconstruct... don't just copy/paste)
+- While the background to this point has been helpful, this section is likely more immediately useful, so settle in and relax
+
+### Where to next?
+
+- Spend the last little bit of the day discussing a path forward
+- What other tools/options are available (OpenACC? OpenCL? AMP+, etc.)
+- What libraries/tools are available?
+- Collect feedback from the workshop and dismiss
 
 [<< Previous](../Appendix_D/readme.md)
 |
