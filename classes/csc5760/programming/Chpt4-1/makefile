@@ -1,7 +1,7 @@
 MKDIR_P := mkdir -p
 OUT_DIR := bin
 PANDOC=/usr/bin/pandoc
-PANDOC_OPTIONS=--smart --standalone
+PANDOC_OPTIONS= --standalone
 PANDOC_PDF_OPTIONS=-V geometry:margin=1in
 
 .PHONY: directories all clean zip report
