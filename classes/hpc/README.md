@@ -203,8 +203,6 @@ Basic introduction to `git` for beginners. While I am generally comfortable, the
 - Each commit only stores the diffs from the prior to it.
 - Try to avoid long-running branches
 
-
-
 ```bash
 $ git config --list
 $ git config --global user.name "Rob Gillen"
@@ -219,15 +217,23 @@ $ git merge <branch>
 $ git checkout -b <branch_name>
 $ git log
 
-
-
 ```
 
-
+This session ended up as a simple walk-through showing folks how to utilize git, how to create a repo, commit changes, do merges, do branching, pull requests, etc. The value likely went up for the new-to-git folks, and down for those very familiar with the tool. I did appreciate that they utilized the command line interface for all of their interactions... this is an area I need to work further on.
 
 ### Parallel Computing Concepts
 
 _John Levesque_
+
+This guy, from Cray, used to work at ORNL and now is supporting LANL. This talk was a broad overview of parallel computing and is a bit "kenote-ish".
+
+I found it interesting on one level, but was disappointed on another... I really wanted to get on to the hands-on work.
+
+Mildly interesting quote:
+
+> Software is getting slower more rapidly than hardware becomes faster
+
+- Niklaus Wirth, 1995
 
 ### Intro to OpenMP
 
@@ -244,5 +250,27 @@ _Bill Renaud_
 
 ## Thursday
 
+### GPU Computing Overview
 
+_Jeff Larkin_
+
+### Intro to CUDA 
+
+_Jeff Larkin_
+
+### Hands-On (CUDA)
+
+### Intro to OpenACC
+
+_Steve Abbott_
+
+### Hands-On (OpenACC)
+
+### NVIDIA Profilers
+
+_Steve Abbott_
+
+### Hands-On (NVIDIA Profilers)
+
+### Wrap Up + OLCF Tour
 
