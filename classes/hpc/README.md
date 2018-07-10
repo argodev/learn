@@ -239,6 +239,18 @@ Mildly interesting quote:
 
 _Dmitry Liakh & Markus Eisenbach_
 
+This is a general overview of OpenMP - Nothing terribly deep
+
+```c
+
+```
+
+
+
+
+
+
+
 ### Intro to MPI
 
 _Brian Smith_
@@ -265,6 +277,37 @@ _Jeff Larkin_
 _Steve Abbott_
 
 ### Hands-On (OpenACC)
+
+```c
+#pragma acc directive clauses
+
+
+```
+Profile Driven Development
+
+```c
+#pragma acc parallel
+{
+  #pragma acc loop
+  for(int i = 0; i < N; i++) {
+    a[i] = 0;
+  }
+}
+
+// this happens so often, they created a shortcut
+#pragma acc parallel loop
+{
+  for(int i = 0; i < N; i++) {
+    a[i] = 0;
+  }
+}
+```
+
+
+Fire up one or more "gangs"... each gang is going do do the same
+
+
+
 
 ### NVIDIA Profilers
 
