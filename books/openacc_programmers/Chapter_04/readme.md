@@ -79,7 +79,8 @@ Consistent with the advice given throughout the book, the next step is to profil
 Create a file in `/etc/ld.so.conf.d/` - I called mine `pgilibs.conf`. Inside that file, place a line for each set of libs you want to load. Mine looks like the following:
 
 ```text
-/opt/pgi/linux86-64/18.4/lib                                                 /opt/pgi/linux86-64/2018/cuda/9.0/lib64
+/opt/pgi/linux86-64/18.4/lib
+/opt/pgi/linux86-64/2018/cuda/9.0/lib64
 ```
 
 Once this is done, re-load your libraries:
