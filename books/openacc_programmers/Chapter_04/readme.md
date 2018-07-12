@@ -104,6 +104,13 @@ export OMP_NUM_THREADS=8
 
 As might be expected, the OpenMP version peformed much better than the associated serial version (2.73x and 4.07x respectively). In both cases, however, the GPU-enabled version remained superior though not by nearly as much (1.68x and 2.77x).
 
+The summarized results are as follows:
+
+![Speedup](speedup.png)
+
+
+![TimeElapsed](times.png)
+
 
 [<< Previous](../Chapter_03/readme.md)
 |
