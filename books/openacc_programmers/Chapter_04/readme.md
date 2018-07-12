@@ -1,7 +1,31 @@
 # Chapter 4: Using OpenACC for Your First Program
 
+The aim of this chapter is to walk the user through creating their first OpenACC program. I must say, however, that I appreciate the approach taken by the author. Rather than simply giving you a bit of code to compile/run, there is a clear intentionality to teach the reader. The author begins by explaining the problem and having the user implement the application  in a serial fashion (much the way they recommend throughout the book) and then proceed from there. My notes on this section follow my walk-through of the exercises.
 
+## Setup
+ 
+I am utilizing two different machines for this lab. The first (Lap01) is my main laptop that I carry each day and has the following specifications:
 
+- Ubuntu 18.04 LTS
+- 32 GB RAM
+- Intel Core i7-7820HQ CPU @ 2.90 GHz x 8
+- Quadro M1200/PCIe/SSE2
+
+The second machine is a bigger laptop (Lap02) and is provided for comparison purposes as it has a better GPU. Its specifications are as follows:
+
+- Ubuntu 18.04 LTS
+- 32 GB RAM
+- Intel Core i7-820HQ CPU @ 2.90 GHz x 8
+- Quadro P3000/PCIe/SSE2
+
+## Serial Code
+
+This step was rather straight-forward. I simply implemented the code as described and compiled it on both machines using the command below:
+
+```bash
+pgcc laplace.c -o serial
+```
+ 
 ```bash
 $ pgcc -acc -Minfo=acc laplace.c -o laplace
 main:

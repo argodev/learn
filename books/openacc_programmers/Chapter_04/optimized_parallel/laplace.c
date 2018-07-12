@@ -3,8 +3,8 @@
 #include <math.h>
 #include <sys/time.h>
 
-#define WIDTH       5000
-#define HEIGHT      5000
+#define WIDTH       1000
+#define HEIGHT      1000
 #define TEMP_TOLERANCE  0.01
 
 double Temperature[HEIGHT+2][WIDTH+2];
