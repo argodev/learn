@@ -15,7 +15,9 @@ In each case, these are _optional_. The opinion of the authors is that you shoul
 There were a few other constructs mentioned in the chapter that were interesting:
 
 - `#pragma acc parallel loop collapse()`: Tells the compiler it can collapse `N` nested loops into 1
-- `
+- `independent` is a clause you can use to tell the compiler that you guarantee a given block is data independent and that it should feel free to parallelize it
+- `seq` is a clause that allows you to inform the compiler that a given section must be run sequentially
+- `reduction()` is a handy clause you can use to provide hints that a given variable holds the reduced values from each iteration and the compiler can optimize appropriately. An example would be a loop that had contents similar to `total += data[i]` - you could decorate the loop with something similar to `#pragma acc parallel loop reduction(+:total)`. There are a number of different reduction operators available.
 
 
 
