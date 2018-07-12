@@ -3,8 +3,8 @@
 #include <math.h>
 #include <sys/time.h>
 
-#define WIDTH       5000
-#define HEIGHT      5000
+#define WIDTH       1000
+#define HEIGHT      1000
 #define TEMP_TOLERANCE  0.01
 
 double Temperature[HEIGHT+2][WIDTH+2];
@@ -22,9 +22,8 @@ int main(int argc, char *argv[]) {
     gettimeofday(&start_time, NULL);
     initialize();
 
-    #pragma acc data copy(Temperature_previous), create(Temperature)
-    while (worst_dt > TEMP_TOLERANCE) {
-        #pragma acc kernels
+   while (worst_dt > TEMP_TOLERANCE) {
+        #pragma omp parallel for private(i, j)
         for (i = 1; i <= HEIGHT; i++) {
             for (j = 1; j <= WIDTH; j++) {
                 Temperature[i][j] = 0.25 * (Temperature_previous[i+1][j]
@@ -36,7 +35,7 @@ int main(int argc, char *argv[]) {
 
         worst_dt = 0.0;
 
-        #pragma acc kernels
+        #pragma omp parallel for reduction(max:worst_dt) private(i,j)
         for (i = 1; i <= HEIGHT; i++) {
             for (j = 1; j <= WIDTH; j++) {
                 worst_dt = fmax(fabs(Temperature[i][j] - Temperature_previous[i][j]), worst_dt);
@@ -45,7 +44,6 @@ int main(int argc, char *argv[]) {
         }
 
         if ((iteration % 100) == 0) {
-            #pragma acc update host(Temperature)
             track_progress(iteration);
         }
 

@@ -24,6 +24,12 @@ main:
          41, Generating implicit reduction(max:worst_dt)
 ```
 
+
+pgcc -o laplace -mp laplace.c
+export OMP_NUM_THREADS=8
+
+
+
 [<< Previous](../Chapter_03/readme.md)
 |
 [Next >>](../Chapter_05/readme.md)
