@@ -139,11 +139,11 @@ There is a script provided (`build_and_test.sh`) that runs through a number of d
 
 ![TimeElapsed](thermotables/scale.png)
 
+As you can tell, the performance is much as would be expected... right arount 10^4 data points, the optimized GPU implementation really starts to shine above all other options.
+
 ### Data-Dependent Optimizations
 
-Finally, he walks through testing the code with different data sizes and shows that there are clear benefits to running on the device once the data set grows beyond a certain size, but performance is degraded below that point. He uses this as a discussion point for using an `if` clause to only parallelize when the input data is beyond a certain scale.
-
-
+Finally, he walks through testing the code with different data sizes and shows that there are clear benefits to running on the device once the data set grows beyond a certain size, but performance is degraded below that point. He uses this as a discussion point for using an `if` clause to only parallelize when the input data is beyond a certain scale. From our data collected above, it looks like 10^4 would be a good threshold.
 
 [<< Previous](../Chapter_05/readme.md)
 |
