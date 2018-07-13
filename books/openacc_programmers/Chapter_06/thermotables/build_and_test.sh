@@ -6,12 +6,12 @@ echo "building CPU+GPU"
 pgc++ --c++11 -acc thermo_openacc.c -o out_gpu
 
 echo "building CPU multicore"
-pgc++ --c++11 -acc -ta=multicore thermo_openacc.c -o out_cpu_muilticore
+pgc++ --c++11 -acc -ta=multicore thermo_openacc.c -o out_cpu_multicore
 
 echo "building CPU+GPU, optimized data locality"
 pgc++ --c++11 -acc thermo_openacc_optimized.c -o out_gpu_optimized
 
-export ACC_NUM_CORES=6
+export ACC_NUM_CORES=8
 nbIter=1000
 for nbData in 100 1000 10000 100000 1000000
 do

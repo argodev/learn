@@ -98,23 +98,34 @@ $ pgc++ --c++11 -acc thermo_openacc.c -o out_gpu
 # run CPU version
 $ time ./out_cpu 100000 1000
 
-real	0m12.848s
-user	0m12.848s
-sys	0m0.001s
+real    0m8.771s
+user    0m8.759s
+sys     0m0.012s
 
 # run GPU version
 $ time ./out_gpu 100000 1000
 
-real	0m11.732s
-user	0m11.719s
-sys	0m0.013s
+real    0m1.485s
+user    0m1.128s
+sys     0m0.319s
 
 ```
 
+This looks pretty good, however (as the author points out), this isn't a fair comparison as we only used one of the CPU cores. Let's recompile for multi-core support and re-run
 
+```bash
+$ pgc++ --c++11 -acc -ta=multicore thermo_openacc.c -o out_cpu_multicore
 
+$ export ACC_NUM_CORES=8
 
+$ time ./out_cpu_multicore 100000 1000
 
+real    0m1.679s
+user    0m13.293s
+sys     0m0.000s
+```
+
+While we the GPU version is still _slightly_ better, it is only barely so.
 
 
 
