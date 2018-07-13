@@ -18,15 +18,107 @@ Most of the material in this section is somewhat obvious but he points out a cou
 1. Finally, there is a discussion of array shaping - the notion that you only move the portion of the array data needed to the device and back again (sub-selections).
 
 ## Example Optimizations
-The chapter ends with an example wherein the author walks you through the entire process previously discussed. He utilizes a theromdynamic table lookup code and briefly explains what it does and how it works. He has you compile it and then walk throug the following steps:
+
+The chapter ends with an example wherein the author walks you through the entire process previously discussed. He utilizes a theromdynamic table lookup code and briefly explains what it does and how it works. He has you compile it and then walk through the following steps:
 
 ### Profiling
 
-Just as described many places in the book, you have to be good at profiling and therefore he describes how you go about doing it with the example application. In this scenario, the `bisection()` method is the hotspot.
+Just as described many places in the book, you have to be good at profiling and therefore he describes how you go about doing it with the example application.
+
+I ran the `build_and_profile.sh` script and have included the pertinent results below:
+
+```text
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ns/call  ns/call  name
+ 54.12      8.94     8.94 100000000    89.40   161.30  LookupTable2D::interpolate(float, float)
+ 43.52     16.13     7.19 200000000    35.95    35.95  bisection(float, float const*, int)
+  1.45     16.37     0.24                             _init
+  0.79     16.50     0.13                             main
+  0.12     16.52     0.02                             ___Z9bisectionfPKfiEND
+  0.00     16.52     0.00        1     0.00     0.00  LookupTable2D::LookupTable2D()
+  0.00     16.52     0.00        1     0.00     0.00  LookupTable2D::~LookupTable2D()
+  0.00     16.52     0.00        1     0.00     0.00  __sti___12_thermo_cpu_c_e48536f4
+
+   ...
+
+             Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 0.06% of 16.52 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     98.4    0.13   16.13                 main [1]
+                8.94    7.19 100000000/100000000     LookupTable2D::interpolate(float, float) [2]
+                0.00    0.00       1/1           LookupTable2D::~LookupTable2D() [11]
+                0.00    0.00       1/1           LookupTable2D::LookupTable2D() [10]
+-----------------------------------------------
+                8.94    7.19 100000000/100000000     main [1]
+[2]     97.6    8.94    7.19 100000000         LookupTable2D::interpolate(float, float) [2]
+                7.19    0.00 200000000/200000000     bisection(float, float const*, int) [3]
+-----------------------------------------------
+                7.19    0.00 200000000/200000000     LookupTable2D::interpolate(float, float) [2]
+[3]     43.5    7.19    0.00 200000000         bisection(float, float const*, int) [3]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]      1.5    0.24    0.00                 _init [4]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]      0.1    0.02    0.00                 ___Z9bisectionfPKfiEND [5]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[10]     0.0    0.00    0.00       1         LookupTable2D::LookupTable2D() [10]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[11]     0.0    0.00    0.00       1         LookupTable2D::~LookupTable2D() [11]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [43]
+[12]     0.0    0.00    0.00       1         __sti___12_thermo_cpu_c_e48536f4 [12]
+-----------------------------------------------
+```
+
+As the author points out, the main hotspot is in the `bisection()` method.
 
 ### Acceleration with OpenACC
 
-The next step in the process is to add acceleration directives. He shows adding data movement directives as well as loop parallelization commands. He then re-runs the tool having compiled it both for CPU, Multi-Core CPU, and CPU+GPU. At this point, the CPU+GPU code is significantly faster than the single-core CPU code, but only slightly faster than the multi-core CPU code.
+The next step in the process is to add acceleration directives. He shows adding data movement directives as well as loop parallelization commands. He then re-runs the tool having compiled it both for CPU, Multi-Core CPU, and CPU+GPU.
+
+> NOTE: I started with the code samples on the author's github site and found that his inclusion of `<cmath>` to be problem causing. I changed this to `<math.h>` and was able to compile and run successfully.
+
+```bash
+# compile CPU version
+$ pgc++ --c++11 thermo_openacc.c -o out_cpu
+
+# compile GPU version
+$ pgc++ --c++11 -acc thermo_openacc.c -o out_gpu
+
+# run CPU version
+$ time ./out_cpu 100000 1000
+
+real	0m12.848s
+user	0m12.848s
+sys	0m0.001s
+
+# run GPU version
+$ time ./out_gpu 100000 1000
+
+real	0m11.732s
+user	0m11.719s
+sys	0m0.013s
+
+```
+
+
+
+
+
+
+
+
+At this point, the CPU+GPU code is significantly faster than the single-core CPU code, but only slightly faster than the multi-core CPU code.
 
 ### Optimized Data Locality
 
