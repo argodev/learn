@@ -13,8 +13,9 @@ pgc++ --c++11 -acc thermo_openacc_optimized.c -o out_gpu_optimized
 
 export ACC_NUM_CORES=8
 nbIter=1000
-for nbData in 100 1000 10000 100000 1000000
+for nbData in 10 100 1000 10000 100000 1000000 10000000
 do
+  echo "----------------------------------------------"
   echo ""
   echo "tests with nbData, nbIter = " $nbData $nbIter
   echo ""
@@ -32,4 +33,6 @@ do
   echo ""
   echo "running CPU+GPU, optimized data locality"
   time ./out_gpu_optimized $nbData $nbIter
+
+  echo ""
 done

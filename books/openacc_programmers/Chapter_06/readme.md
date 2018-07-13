@@ -33,51 +33,53 @@ Flat profile:
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total
  time   seconds   seconds    calls  ns/call  ns/call  name
- 54.12      8.94     8.94 100000000    89.40   161.30  LookupTable2D::interpolate(float, float)
- 43.52     16.13     7.19 200000000    35.95    35.95  bisection(float, float const*, int)
-  1.45     16.37     0.24                             _init
-  0.79     16.50     0.13                             main
-  0.12     16.52     0.02                             ___Z9bisectionfPKfiEND
-  0.00     16.52     0.00        1     0.00     0.00  LookupTable2D::LookupTable2D()
-  0.00     16.52     0.00        1     0.00     0.00  LookupTable2D::~LookupTable2D()
-  0.00     16.52     0.00        1     0.00     0.00  __sti___12_thermo_cpu_c_e48536f4
+ 60.89      6.01     6.01 200000000    30.05    30.05  bisection(float, float const*, int)
+ 35.97      9.56     3.55 100000000    35.50    95.60  LookupTable2D::interpolate(float, float)
+  1.11      9.67     0.11                             main
+  0.81      9.75     0.08                             _init
+  0.71      9.82     0.07                             ___ZN13LookupTable2D11interpolateEffEND
+  0.51      9.87     0.05                             ___Z9bisectionfPKfiEND
+  0.00      9.87     0.00        1     0.00     0.00  LookupTable2D::LookupTable2D()
+  0.00      9.87     0.00        1     0.00     0.00  LookupTable2D::~LookupTable2D()
+  0.00      9.87     0.00        1     0.00     0.00  __sti___12_thermo_cpu_c_e48536f4  
 
-   ...
+ ...
 
-             Call graph (explanation follows)
-
-
-granularity: each sample hit covers 2 byte(s) for 0.06% of 16.52 seconds
+Call graph (explanation follows)
 
 index % time    self  children    called     name
                                                  <spontaneous>
-[1]     98.4    0.13   16.13                 main [1]
-                8.94    7.19 100000000/100000000     LookupTable2D::interpolate(float, float) [2]
-                0.00    0.00       1/1           LookupTable2D::~LookupTable2D() [11]
-                0.00    0.00       1/1           LookupTable2D::LookupTable2D() [10]
+[1]     98.0    0.11    9.56                 main [1]
+                3.55    6.01 100000000/100000000     LookupTable2D::interpolate(float, float) [2]
+                0.00    0.00       1/1           LookupTable2D::LookupTable2D() [11]
+                0.00    0.00       1/1           LookupTable2D::~LookupTable2D() [12]
 -----------------------------------------------
-                8.94    7.19 100000000/100000000     main [1]
-[2]     97.6    8.94    7.19 100000000         LookupTable2D::interpolate(float, float) [2]
-                7.19    0.00 200000000/200000000     bisection(float, float const*, int) [3]
+                3.55    6.01 100000000/100000000     main [1]
+[2]     96.9    3.55    6.01 100000000         LookupTable2D::interpolate(float, float) [2]
+                6.01    0.00 200000000/200000000     bisection(float, float const*, int) [3]
 -----------------------------------------------
-                7.19    0.00 200000000/200000000     LookupTable2D::interpolate(float, float) [2]
-[3]     43.5    7.19    0.00 200000000         bisection(float, float const*, int) [3]
------------------------------------------------
-                                                 <spontaneous>
-[4]      1.5    0.24    0.00                 _init [4]
+                6.01    0.00 200000000/200000000     LookupTable2D::interpolate(float, float) [2]
+[3]     60.9    6.01    0.00 200000000         bisection(float, float const*, int) [3]
 -----------------------------------------------
                                                  <spontaneous>
-[5]      0.1    0.02    0.00                 ___Z9bisectionfPKfiEND [5]
+[4]      0.8    0.08    0.00                 _init [4]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]      0.7    0.07    0.00                 ___ZN13LookupTable2D11interpolateEffEND [5]
+-----------------------------------------------
+                                                 <spontaneous>
+[6]      0.5    0.05    0.00                 ___Z9bisectionfPKfiEND [6]
 -----------------------------------------------
                 0.00    0.00       1/1           main [1]
-[10]     0.0    0.00    0.00       1         LookupTable2D::LookupTable2D() [10]
+[11]     0.0    0.00    0.00       1         LookupTable2D::LookupTable2D() [11]
 -----------------------------------------------
                 0.00    0.00       1/1           main [1]
-[11]     0.0    0.00    0.00       1         LookupTable2D::~LookupTable2D() [11]
+[12]     0.0    0.00    0.00       1         LookupTable2D::~LookupTable2D() [12]
 -----------------------------------------------
                 0.00    0.00       1/1           __libc_csu_init [43]
-[12]     0.0    0.00    0.00       1         __sti___12_thermo_cpu_c_e48536f4 [12]
+[13]     0.0    0.00    0.00       1         __sti___12_thermo_cpu_c_e48536f4 [13]
 -----------------------------------------------
+
 ```
 
 As the author points out, the main hotspot is in the `bisection()` method.
@@ -108,16 +110,18 @@ $ time ./out_gpu 100000 1000
 real    0m1.485s
 user    0m1.128s
 sys     0m0.319s
-
 ```
 
 This looks pretty good, however (as the author points out), this isn't a fair comparison as we only used one of the CPU cores. Let's recompile for multi-core support and re-run
 
 ```bash
+# complile Multicore version
 $ pgc++ --c++11 -acc -ta=multicore thermo_openacc.c -o out_cpu_multicore
 
+# set number of cores available
 $ export ACC_NUM_CORES=8
 
+# run multicore version
 $ time ./out_cpu_multicore 100000 1000
 
 real    0m1.679s
@@ -125,19 +129,20 @@ user    0m13.293s
 sys     0m0.000s
 ```
 
-While we the GPU version is still _slightly_ better, it is only barely so.
-
-
-
 At this point, the CPU+GPU code is significantly faster than the single-core CPU code, but only slightly faster than the multi-core CPU code.
 
 ### Optimized Data Locality
 
 Once the logic has been parallelized, the focuses on where data lives, where it needs to be, and how we can optimize the code accordingly. He adds a few data directives as well as a data enter/exit region. The code is recompiled and, at this point, the CPU+GPU code clearly outshines either of the other options.
 
+There is a script provided (`build_and_test.sh`) that runs through a number of data sizes for each of the profile options. I ran these and provide my results in the plot below:
+
+![TimeElapsed](thermotables/scale.png)
+
 ### Data-Dependent Optimizations
 
 Finally, he walks through testing the code with different data sizes and shows that there are clear benefits to running on the device once the data set grows beyond a certain size, but performance is degraded below that point. He uses this as a discussion point for using an `if` clause to only parallelize when the input data is beyond a certain scale.
+
 
 
 [<< Previous](../Chapter_05/readme.md)
