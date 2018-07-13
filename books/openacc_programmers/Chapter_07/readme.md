@@ -8,7 +8,7 @@ They wrap up this short chapter with an experiment and the presented results. Th
 
 Their results show that the Cray-specific compiler performed the best when running on Cray system with multi-core processors and NVIDIA GPUs. The PGI compiler also performed well and both were much better than the OpenMP variant. They then compiled and ran the code only for CPU multicore and still show a speedup over the OpenMP version, though not nearly as pronounced. They postulate that this is due to the OpenACC directives providing more information regarding possible vectorization to the compiler.
 
-
+The authors did not provide code samples for the HACCmk application in their source repo. I was able to locate it, however I was unable to get it running suitably to include test results in this repo. For those interested, [you can find it here.](https://asc.llnl.gov/CORAL-benchmarks/Micro/HACCmk_Step10.tar.bz2)
 
 [<< Previous](../Chapter_06/readme.md)
 |
