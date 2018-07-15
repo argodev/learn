@@ -1,20 +1,16 @@
 # Setup
-This book didn't really include a section on setting up your environment for 
-testing or building the code examples in the book or even where to get Open 
-CL 2.0. This page details the steps I went through attempting to get things 
-working properly on my machine.
+
+This book didn't really include a section on setting up your environment for testing or building the code examples in the book or even where to get Open CL 2.0. This page details the steps I went through attempting to get things working properly on my machine.
 
 ## Environment
 
 - Windows 10 (MS Surface Pro 4)
 - Visual Studio 2015 Community Edition with C++ support
 
-For the purposes of this walk-through I am attempting to utilize entirely free
-software and tools. This is not due to any particular dislike of commercial 
-tools, but rather to ensure that anyone interested could follow along and have
-the same experience.
+For the purposes of this walk-through I am attempting to utilize entirely free software and tools. This is not due to any particular dislike of commercial tools, but rather to ensure that anyone interested could follow along and have the same experience.
 
 ## Installation
+
 There are a number of SDKs you can install to get OpenCL - NVidia, AMD, Intel 
 to name a few. It is important to note, that you really don't need any of them.
 This situation is best explained via the following quote:
@@ -48,7 +44,7 @@ Because the post above referenced the NVidia SDK in the images, I'm providing
 the images below only to show the differences when using the Intel SDK.
 
 After installing the Intel SDK, I had a few new environment variables:
-![Environment Variables](https://github.com/argodev/books/blob/master/images/envvars01.png)
+![Environment Variables](../images/envvars01.png)
 
 We will utilize these to help configure Visual Studio to support OpenCL.
 
