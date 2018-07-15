@@ -45,3 +45,7 @@ Press any key to continue . . .
 This confirms my setup, and shows that OpenCL can see both my OpenCL-enabled CPU and GPU.
 
 I again want to give credit to [Anca Hamuraru](https://streamcomputing.eu/blog/author/anca/) for his [(indirect) assistance](https://streamcomputing.eu/blog/2015-03-16/how-to-install-opencl-on-windows/) with this post.
+
+[<< Previous](../README.md)
+|
+[Next >>](../01%20-%20Introduction/README.md)
