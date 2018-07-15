@@ -6,4 +6,6 @@ They then discuss what it would take to build an intermediary compiler that coul
 
 Interestigly, the generated kernel runs in almost identical time to the hand-coded kernel. However, the ceremony in C++ required to automatically generate/compile the kernel takes significantly longer (runtime-wise) than the hand-crafted version (no surprise). As with most of the rest of this topic, the tradespace needs to be fully considered between developer productivty/accuracy and runtime performance.
 
-
+[<< Previous](../Chapter_10/README.md)
+|
+[Next >>](../Chapter_12/README.md)
