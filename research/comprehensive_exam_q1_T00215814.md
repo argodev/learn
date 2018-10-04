@@ -19,31 +19,11 @@ Select one of these 2 papers (_Anomaly detection in cyber physical systems using
 
 ## Anomaly detection in cyber physical systems using recurrent neural networks
 
-In this paper, the authors present an approach to detecting anomalous traffic in a cyber-physical system.  
+In this paper, the authors present an approach to detecting anomalous traffic in a cyber-physical system. They begin by describing the problem and providing a broad overview of their approach - Long Short Term Memory based Recurrent Neural Networks (LSTM-RNN) with CUSUM for anomaly detection. They describe what they believe are their contributions and novelty: unsupervised approach based on LSTM-RNN + CUSUM, low false positive rate, techniques demonstrated in the context of a water treatment plant, and the ability to not only detect the presence of an anomaly, but also the sensor that is being tampered with. They follow this with a description of LTSM-RNN and CUSUM and the equations they chose. They describe their test dataset - The Secure Water Treament Plant (SWaT) at iTrust[-@swat], their attack scenarios, and then their expriements and results.
 
-- unsupervised
-- RNN as a time-series predictor
-- cumulative sum method to identify anomalies
-- "majority" of attacks
-- "low" false-positive rate
-- Utilize Long Term Short Term Memory RNN (LSTM-RNN) to correlate time series data
+There are two primary aspects of the authors' approach. First, they utilize LSTM-RNN to provide a time-series based prediction of what each sensor's subsequent value should be. This prediction value is then compared against the actual/provided value and evaluated for suitability via CUSUM[-@doi:10.1093/biomet/41.1-2.100]. They build these models and evaluate the output of each sensor in an attempt to validate each sensor's readings. For the prediction, they appear to follow the model in [-@Malhotra] with the primary difference being the approach used in evaluation (CUSUM vs. probablity error above a fixed threshold).
 
-Contributions
-
-- Modelling normal behavior in CPS using an unsuperivsed, deep learning approach
-- identify the sensors that exhibit the anomalous behavior
-- validation of the approach on the Secure Water Treatement Testbed (SWaT)
-
-Novelty
-
-- Work is in water critical infrastructure, specifically SWaT
-- This environment reflects the complexity normally found in a real-world plant
-- approach uses time-based neural networks to consider sequence of information
-- not only detects anomalies, but also the source (sensor in question)
-
-- they describe what LSTM does and how it works... it doesn't appear that they built/did it themselves (just implemented it)
-
-
+In their results they demonstrate the ability to capture the majority of their attacks. The only one they did not capture was one in which the system behaved in a normal fashion and the "attack" was assumed to be part of regular operations. Their figures (particularly 2, 3, 4) could have been re-organized to more clearly communicate their attacks and the relations between the values being displayed. Regardless of their layout choices, the attacks can be clearly identified.
 
 ### Review
 
