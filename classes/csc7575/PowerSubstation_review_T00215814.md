@@ -34,7 +34,7 @@ The fact that there were network upgrades/infrastructure changes during their mo
 
 # Additional Publications by the Same Author(s)
 
-The following are more recent papers by the author, though none of them are directly related to traffic modeling. 
+The following are more recent papers by the author, though none of them are directly related to traffic modeling.
 
 - David Formby, Milad Rad, and Raheem Beyah. Lowering the Barriers to Industrial Control System Security with GRFICS. To appear in the USENIX Workshop on Advances in Security Education (ASE), Baltimore, Maryland, August 2018.
 - Qinchen Gu, David Formby, Shouling Ji, Hasan Cam, and Raheem Beyah. "Fingerprinting for Cyber Physical System Security: Device Physics Matters Too." To appear in the IEEE Security & Privacy Magazine.

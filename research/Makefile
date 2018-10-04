@@ -17,4 +17,6 @@ questions :
 	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o Draft_Questions_T00215814.pdf questions.md
 
 exam :
-	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o Comprehensive_Exam_T00215814.pdf comprehensive_exam_T00215814.md
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o Comprehensive_Exam_Q1_T00215814.pdf comprehensive_exam_q1_T00215814.md
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o Comprehensive_Exam_Q2_T00215814.pdf comprehensive_exam_q2_T00215814.md
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o Comprehensive_Exam_Q3_T00215814.pdf comprehensive_exam_q3_T00215814.md
