@@ -17,9 +17,7 @@ What impact do Real Time Operating Systems have on the vulnerabilities of cyber-
 
 # Answer
 
-Real-time Operating Systems (RTOSs) are, in many ways, similar to general purpose OSes and have, in recent years, gone through similar adjustments due to increasing threats. The primary difference is that RTOSs started out targeting disconnected/private networks and therefore were less suseptible to malicous actors. The developers of such systems focused on the scheulding and real-time nature of their systems (the key objective of the system) rather than hardening them from outside influence. As these systems have been increasingly connected to corporate networks and eventually to the Internet itself, the maintainers of these OSes have had to adopt techniques and protections that have long been present in general purpose OSes but must implement them in a manner that does not impede their schedulers. What follows is a list of advantages, disadvantages and some mitigations for these related to RTOSs.
-
- There are many RTOSs available but some common ones include FreeRTOS[-@freertos], QNX[-@qnx], and VxWorks[-@vxworks].
+Real-time Operating Systems (RTOSs) are, in many ways, similar to general purpose OSes and have, in recent years, gone through similar adjustments due to increasing threats. The primary difference is that RTOSs started out targeting disconnected/private networks and therefore were less suseptible to malicous actors. The developers of such systems focused on task scheulding and the real-time nature of their systems (the key objectives of the system) rather than hardening them from outside influence. As these systems have been increasingly connected to corporate networks and eventually to the Internet itself, the maintainers of these OSes have been forced to adopt techniques and protections that have long been present in general purpose OSes but must implement them in a manner that does not impede their schedulers. What follows is a list of advantages, disadvantages and some mitigations for these related to RTOSs.
 
 ## Security Advantages
 
@@ -27,41 +25,39 @@ From the standpoint of platform security, there are some significant advantages 
 
 __Determinism:__ RTOSs do not provide the same level of clock syhnchronicity available in an FPGA or ASIC, but the are designed to support time-dependent repeating tasks. This regularity can be a significant asset when monitoring the data coming into/going out of one of theses systems - the traffic patterns should exhibit a consistency that eases the tasks of anomaly detection.
 
-__Reduced Attack Surface:__ Becuase these OSes are not general-purpose, they are generally streamlined for a specific category of tasks or operations. As such, the software packages included in the OS and code compiled into the kernel is often far less that would be present in a general OS.
+__Reduced Attack Surface:__ Becuase these OSes are not general-purpose, they are generally streamlined for a specific category of tasks or operations. As such, the quantity of software packages included in the OS and code compiled into the kernel is often far less that would be present in a general OS.
 
 __Limited Connectivity:__ While not a factor specifically of an RTOS, many of the control systems running an RTOS in cyber-physical sytem run in a private network or, at least a segmented network. As mentioned above, however, the increasing connectedness is rapidly diminishing.
 
 ## Security Disadvantages
 
-- (near) determinisim
-- sometimes less robust outward-facing connectivity
-- limited hardware resources
+__Memory Isolation:__ This is less of an issue with modern versions of RTOSs, but earlier on there was such a focus on time consistency that many of the process and memory isolation techniques we see today were not incorporated into these systems. This allowed one malicious process to read and potentially overwrite data from other processes.
 
-- less automated patching/updates
-- more often "stuck in a closet"
-- less robust (securly). 
+__Determinisim:__ While previously listed as an advantage, the consistency of these systems can also present a weakness. Imagine, if you will, a system that polls for data once every 2 seconds and takes 0.1 seconds to complete. An attacker can observe this traffic pattern and then time their attack to function within the remaining 1.9 seconds and, so long as they return the state to "normal" before the polling occurs, they will proceed undected (similar to pulse-width modulation).
 
-- Shared Memory (Whiteboard)
+__Less "Hardended" External Services:__ This is not universally true, but based on the historical origins wherein many of these systems lived only on trusted networks, the attention paid to the security robustness of their IP services is often less than general OSes. As a colloquial example, just last week I was working with an SEL-351 box (electrical grid relay protection system) that had telnet and FTP services (all clear text) enabled by default.
 
-__Lack of Enterprise Management Features__
+__Limited Hardware Resources:__ This is not necessarily unique to RTOSs but more to the notion of embedded systems in general. The fact that many of these operating systems are running on constrained hardware has a very clear impact on the security of the systems. For example, on a low-powered processor, the act of encrypting and decrypting data may be too computationally expensive to be allowed given the tight constraints of the scheduler.
 
+__Reduced Automated Patching/Updates:__ There are a handful of related issues that are bundled into this single heading. Due to the types of systems onto which these OSes are normally deployed (24x7 ops, deploy-and-forget appliances, etc.) the liklihood that these devices will be configured to automatically update themselves as security patches are made available is incredibly low. The growing connectivity to these devices only serves to exacerbate this issue. Closely coupled with this is the reduced set of enterprise-level management tools available for these OSes.
 
 ## Mitigations
 
 Since the public disclosure of Stuxnet, there has been an increase in the amount of research in the area of cyber physical systems. Many security researchers are taking a closer look at the devices and software that control the systems that affect our daily lives. Some of the mitigation work is listed below:
 
-__Security-Focused RTOS__: Much like the general OS market has security-hardended versions of the most common OS variants, there have emerged security-enhanced RTOSs.
-asdfasdf
+__Memory/Time/Resource Isolation:__ This has likely been the largest single change in the RTOS domain relative to security. As early as 2004 organizations such as the FAA, NSA and others were pushing RTOS developers to support security standards such as ARINC 653[-@arinc], DO-178B[-@rtca], and EAL-7[-@common_criteria]. These standards require isolation between processes and memory accesses among other stability and safety related properties. In more recent years standards such as these have been updated, imroved, and increasingly required by those acquiring RTOS-based systems.
 
-Ingegrity RTOS by Green Hills Sofware[-@integrity_rtos]
+__Security-Focused RTOS:__ Much like the general OS market has security-hardended versions of the most common OS variants, there have emerged security-enhanced RTOSs. Also, based on the standard requirements described above, many of the previously-existing vendors have strengthened their compliance and security controls. Examples of security-aware or security-hardened RTOSs include (partial list): Ingegrity RTOS by Green Hills Sofware[-@integrity_rtos], FreeRTOS[-@freertos], QNX[-@qnx], and VxWorks[-@vxworks].
 
-__Memory Isolation__:
+__System-Call Based Anomaly Detection:__ In their paper[-@DBLP:journals/corr/abs-1805-00074] Cheng et. all present an anomaly-detection system that monitors system calls to attempt to determine if someone is performing data-injection attack. They are specifically focused not on network-based attacks, but local-device attacks wherein an attacker attempts to modify the memory locations holding the data on which the control system responds. In these cases, the logical control flow of the application has not been violated, but the data is simply wrong, causing the program to respond in a fashion consistent with its programmed logic but contrary to the actual physical state of the system. Systems such as this could be used to help mitigate the risks of shared memory models in deployed RTOS platforms.
 
-__System-Call Based Anomaly Detection__: In their paper[-@DBLP:journals/corr/abs-1805-00074] Cheng et. all present an anomaly-detection system that monitors system calls to attempt to determine if someone is performing data-injection attack. They are specifically focused not on network-based attacks, but local-device attacks wherein an attacker attempts to modify the memory locations holding the data on which the control system responds. In these cases, the logical control flow of the application has not been violated, but the data is simply wrong, causing the program to respond in a fashion consistent with its programmed logic but contrary to the actual physical state of the system. Systems such as this could be used to help mitigate the risks of shared memory models in deployed RTOS platforms.
+__Traffic Classification Systems:__
+
+In a fashion similar to that in the IT space, the data science community has turned it's attention to monitoring and protecting the networks supporting control systems. While there are many similiarities between IT and OT networks, the protocols, structures, and physical media are often unique. Work in machine-learning based classification[-@Beaver:2013:EML:2584691.2584722][-@6900095] of traffic flowing into and out of these specific systems is progressing.
 
 ## A Potential Bellwether
 
-While not explicitly focused on RTOS-based devices, Formby et. al. [-@Formby:2017:CSP:3107080.3084456] performed a three-year longitudinal study of the network traffic within a power company's substations for the purpose of characterising the traffic and they uncovered a number of interesting items that are relevant to this topic.
+While not explicitly statued that they were  dealing with RTOS-based devices, Formby et. al. [-@Formby:2017:CSP:3107080.3084456] performed a three-year longitudinal study of the network traffic within a power company's substations for the purpose of characterising the traffic and they uncovered a number of interesting items that are relevant to this topic.
 
 The traffic was _not_ nearly as regular and predicable as one would expect, even given a highly over-provisioned network. There is an assumption among many that in a relatively isolated network that has more capacity than needed and contains only embedded systems devices (RTOSs, bare-metal) monitoring a physical system, the traffic should be highly regular and consistent. This type of enviornment should (logically) be a perfect fit for anomaly detection systems as the model of "normal" should be clear and easy to build and abnormal traffic should be clear and obvious. Contrary to this assumptions, they found significant variance in response times, in inter-packet timings, etc. They performed the majority of their work in one substation and validated it in two others (all the same company, however).
 
