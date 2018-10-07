@@ -3,5 +3,13 @@
         "thread": "cpp",
         "chrono": "cpp",
         "limits": "cpp"
-    }
+    },
+    "spellright.language": [
+        "English (American)"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ]
 }
