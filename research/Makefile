@@ -5,7 +5,7 @@ PANDOC_PDF_OPTIONS=-V geometry:margin=1in
 # Targets and dependencies
 .PHONY: clean
 
-all : clean abstract proposal questions
+all : clean abstract proposal questions exam
 
 clean :
 	- $(RM) $(EXPORTED_DOCS)
