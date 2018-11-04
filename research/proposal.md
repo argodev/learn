@@ -55,7 +55,7 @@ In order to accomplish the stated research objectives, the following tasks will 
 - Develop means of quantifying the effects to the attack (e.g. longer to execute, less effective, etc.) of the requisite changes
 - Publish resulting methodology
 
-This research has been in the proposal and planning stages for the past six months but actual work in on this project has only just recently commenced. As such, many of the specifics (e.g. test beds, test equipment, etc.) are still in flux. I intend to focus on energy infrastructure and nuclear science test beds and network-based anomaly detection systems (vs. host-based).
+This research has been in the proposal and planning stages for the past six months but actual work on this project has only just recently commenced. As such, many of the specifics (e.g. test beds, test equipment, etc.) are still in flux. I intend to focus on energy infrastructure and nuclear science test beds and network-based anomaly detection systems (vs. host-based).
 
 In collaboration with others at ORNL working on cyber-physical systems, I expect to publish the results of this work in one or more of the following: the International Journal of Infrastructure Protection[-@ijcip], the IET Cyber-Physical Systems: Theory and Applications[-@ietcps] journal, and possibly the Department of Homeland Security (DHS) newsletter for Industrial Control Systems[-@dhsics].
 
