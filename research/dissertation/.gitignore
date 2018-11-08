@@ -6,3 +6,7 @@ dasp_algorithm_results/*-converted-to.pdf
 *.lot
 *.nlo
 *.toc
+*.bbl
+*.blg
+main.pdf
+main.synctex.gz

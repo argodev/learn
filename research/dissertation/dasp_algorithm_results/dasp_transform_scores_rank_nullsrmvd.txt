@@ -1,0 +1,14 @@
+DASP Algorithm, Image Transform, Mean Accuracy, Standard Deviation
+maspl, array, 85.8, 11.13
+masph, array, 85.6, 13.11
+fasp, array, 84.9, 11.7
+haspd, array, 84.7, 12.31
+haspf, array, 84.5, 13.42
+cmasp, edgearray, 83.8, 10.95
+haspf, edgearray, 83.2, 10.22
+haspf, rarray, 82.3, 12.34
+scap, array, 81.4, 12.3
+cmasp, array, 81.1, 13.8
+cmasp, rarray, 80.8, 11.53
+masph, rarray, 78.8, 10.7
+masph, edgearray, 77.7, 11.2

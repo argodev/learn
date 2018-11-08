@@ -1,0 +1,19 @@
+DASP Algorithm, Image Transform, Clutter Assignment
+cmasp, array, 47.9
+cmasp, edgearray, 36.8
+cmasp, rarray, 46.9
+fasp, array, 2.4
+haspf, array, 41.8
+haspf, edgearray, 44.1
+haspf, rarray, 36.9
+haspd, array, 10.5
+maspl, array, 10.8
+maspl, scatter, 52.6
+maspl, edgearray, 26
+maspl, rarray, 35.3
+masph, array, 9.8
+masph, scatter, 31.3
+masph, edgearray, 34.1
+masph, rarray, 35.6
+scap, array, 20.1
+Combined, - , 80.9
