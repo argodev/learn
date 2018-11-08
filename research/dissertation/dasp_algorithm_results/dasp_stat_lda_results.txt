@@ -1,0 +1,16 @@
+DASP Algorithm, Image Transform, All Segments, Top Segment Only, Rank Reduced
+cmasp, array, 99.3, 79.6, 58.1
+cmasp, edgearray, 99.1, 79.9, 75.1
+cmasp, rarray, 98.5, 82.2, 71.4
+fasp, array, 98.1, 90.8, 80
+haspf, array, 100, 89.7, 91.2
+haspf, edgearray, 99.5, 87.1, 81.8
+haspf, rarray, 99.2, 94.7, 82.8
+haspd, array, 100, 84, 88.7
+maspl, array, 98.6, 85.1, 79.3
+masph, array, 98.9, 82.8, 76.1
+masph, edgearray, 95.1, 71.9, 65.9
+masph, rarray, 96.7, 82.8, 69.6
+scap, array, 98.6, 84.5, 70.3
+scap, vec, 40.3, NA, 40.2
+Combined, NA,100, NA, 94.6

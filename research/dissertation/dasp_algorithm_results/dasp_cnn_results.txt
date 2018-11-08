@@ -1,0 +1,18 @@
+DASP Algorithm, Image Transform, Accuracy
+cmasp, array, 99.6
+cmasp, edgearray, 99.6
+cmasp, rarray, 98.5
+fasp, array, 99.9
+haspf, array, 99.5
+haspf, edgearray, 97.3
+haspf, rarray, 98.8
+haspd, array, 99.9
+maspl, array, 99.5
+maspl, scatter, 99.4
+maspl, edgearray, 97.3
+maspl, rarray, 97.3
+masph, array, 99.7
+masph, scatter, 99.4
+masph, edgearray, 98.8
+masph, rarray, 98.9
+scap, array, 99.9
