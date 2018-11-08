@@ -17,7 +17,7 @@
 %%% draft option, which will reformat your thesis to take up fewer sheets
 %%% during the early editing process. Finally, you may want to add the
 %%% copyrighted option, which will add a copyright page to the front matter.
-\documentclass[10pt,oneside]{ttuthesis}
+\documentclass[12pt,oneside]{ttuthesis}
 
 %%% For all notes below, let JOBNAME equal the base filename of this
 %%% main .tex file for your thesis/dissertation (that is, this file you're

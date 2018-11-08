@@ -1,0 +1,248 @@
+% !TeX program = latexmk
+%%%
+%%% LaTeX 2e (mostly) version of TTU thesis and dissertation format
+%%% by Mike Renfro (renfro at tntech.edu) et al
+%%%
+%%% Basic instructions for document and formatting options are
+%%% included inline throughout the .tex files -- read them thoroughly,
+%%% and avoid changing anything other than what is specifically listed
+%%% as editable.
+
+%%% On the \documentclass line below, one thing you might need to
+%%% change would be the font size. 10pt, 11pt, and 12pt are all
+%%% accepted by the Graduate School, but your advisor and committee
+%%% may be more restrictive. The default of 12pt should be fine unless
+%%% you have a very large committee and a long thesis or dissertation title,
+%%% which would overflow the approval sheet. You may also want to add the
+%%% draft option, which will reformat your thesis to take up fewer sheets
+%%% during the early editing process. Finally, you may want to add the
+%%% copyrighted option, which will add a copyright page to the front matter.
+\documentclass[11pt,oneside]{ttuthesis}
+
+%%% For all notes below, let JOBNAME equal the base filename of this
+%%% main .tex file for your thesis/dissertation (that is, this file you're
+%%% reading right now). The macro \jobname has already been set to this value,
+%%% and is used in several places below. There is no need to change this unless
+%%% you decide to totally rearrange how various content and settings are stored.
+%%%
+%%% Go ahead and save this file under a new name (thesis-your-last-name.tex or
+%%% thesis-your-ttu-username.tex, for example). That way, if you happen to
+%%% update to a new version of the thesis files, your changes won't be
+%%% overwritten. Also, make a new subdirectory in this directory named
+%%% similarly (for example, thesis-your-last-name-content or
+%%% thesis-your-ttu-username-content) to hold your chapters, figures, and other
+%%% related items.
+
+%%% Notes on adding other packages to your thesis:
+%
+% 1. The memoir class that ttuthesis.cls is based from already
+%    emulates many packages' features. There is no need to load any of the
+%    following packages at all---simply use their commands as if you'd already
+%    loaded them:
+%
+%    appendix, array, booktabs, ccaption, chngcntr, crop, dcolumn, delarray,
+%    enumerate, epigraph, framed, ifmtarg, ifpdf, index, makeidx, moreverb,
+%    needspace, newfile, nextpage, pagenote, patchcmd, parskip, setspace,
+%    shortvrb, showidx, tabularx, titleref, tocbibind, tocloft, verbatim,
+%    verse.
+%
+% 2. The memoir class also provides functions equivalent to those in the
+%    following packages, although it does not prevent you from loading them
+%    via \usepackage:
+%
+%    fancyhdr, geometry, sidecap, subfigure, titlesec.
+%
+% 3. ttuthesis.cls automatically loads the following packages. There is
+%    no need to re-load them in your own files:
+%
+%    hypcap, hyperref, ifthen, indentfirst, listings, memhfixc, nomencl,
+%    refcount, rotating, ted.
+%
+% 4. For any remaining packages you need to load, some may need to be
+%    loaded before hyperref, and some may need to be loaded after hyperref.
+%    Add your entries to JOBNAME-packages-loaded-before-hyperref.sty and
+%    JOBNAME-packages-loaded-after-hyperref.sty as appropriate.
+
+%%% Your thesis or dissertation title. Insert line breaks manually
+%%% with the \\ characters so that when printed, the title has an
+%%% inverted pyramid format. If your title contains Greek letters,
+%%% superscripts, subscripts, or other typography that can't be
+%%% rendered as a PDF string, use the command
+%%% \title{\texorpdfstring{TeX title}{PDF title}} instead.
+\title{Data-Driven Assessment of Network-Based Anomaly Detection Systems Protecting Cyber-Physical Systems}
+
+%%% Your name, as registered at the university.
+\author{Robert E. Gillen}
+
+%%% This example and style file was designed to render into a PDF file
+%%% rather than DVI or Postscript, and for all cross-references (to
+%%% specific chapters, pages, equations, references, etc.) to be
+%%% hyperlinks in that PDF. The hyperref package handles the
+%%% hyperlinks, and also the basic metadata for the PDF, such as the
+%%% author, keywords, etc.
+%%%
+%%% ttuthesis.cls automatically fills out the fields for pdfauthor and
+%%% pdftitle. The pdfkeywords and pdfsubject fields are optional, but
+%%% may be useful in the future if we do an electronic archive of
+%%% theses and dissertations and want to make it easier to search. If
+%%% you don't fill out accurate subject and keywords fields, please
+%%% remove or comment the following hypersetup command entirely.
+%%%
+\hypersetup{
+  pdfsubject={Format and style rules for theses and dissertations at Tennessee Technological University},
+  pdfkeywords={thesis, dissertation, style guide}
+}
+
+%%%
+%%% Other information relevant to the front matter of your thesis.
+%%%
+
+%%% Your abstract.
+\abstract{%
+  My thesis has an abstract. Here it is.
+}
+
+%%% Is this document and thesis or a dissertation?
+\doctype{Dissertation}
+
+%%% Your planned degree
+\degree{Doctorate of Philosophy}
+
+%%% Your major. Engineering PhD students would just put Engineering
+%%% here, not a specific department's name.
+\department{Engineering}
+
+%%% The month and year of your graduation.
+\graduationmonth{December}
+\graduationyear{2019}
+
+%%% The text of your dedication page, if you have one.
+\dedication{%
+  \begin{center}
+    This thesis is dedicated to my parents \\
+    who have given me invaluable educational opportunities.     
+  \end{center}
+}
+
+%%% The text of your acknowledgments page.
+\acknowledgments{%
+  Appreciation is extended to my advisor and other committee members.
+}
+%%%
+%%% Information about your committee.
+%%%
+%%% Note: you may have to switch to a smaller font if your
+%%% thesis/dissertation title is very long and your committee is very large.
+%%% Using a 10pt font, a title seven lines long only allows for six people
+%%% on the committee (including chairs and cochairs). A title two lines long
+%%% allows for up to nine people on the committee (including chairs and
+%%% cochairs).
+
+%%% First, who is your committee chair?
+\committeechair{Steven Scott}
+
+%%% Second, does your committee have a single chair, or two cochairs?
+%%% If you have two cochairs, use one name in \committeechair, and the
+%%% second name in \committeecochair. If you have no cochair, leave the
+%%% \committeecochair command commented out.
+%\committeecochair{Cochair's Name}
+
+%%% Third, what are the names of your committee members?
+\committeemembers{Adam Anderson, William Eberle, Mike Rogers, Sheikh Ghafoor}
+
+\begin{document}
+
+%%%
+%%% Typesetting your document's front matter. Most of this is automated.
+%%%
+%%% Abstract page, title page: mandatory, automatically added to all
+%%% theses and dissertations. Use the \abstract, \title, \author, \doctype,
+%%% \degree, \department, \graduationmonth, and \graduationyear commands
+%%% above to edit the page content. The page format and location is fixed,
+%%% and cannot be edited.
+%%%
+%%% Copyright page: optional, automatically added to all theses and
+%%% dissertations with copyrighted in the \documentclass options above. The
+%%% page format and location is fixed, and cannot be edited.
+%%%
+%%% Approval page: mandatory, automatically added to all theses and
+%%% dissertations. Placed immediately after the copyright page (if present)
+%%% or the title page (if no copyright page is present).  The page format
+%%% and location is fixed, and cannot be edited.
+%%%
+%%% Dedication page: optional, automatically added to all theses and
+%%% dissertations with a \dedication command. Placed immediately after the
+%%% approval page. The \dedication command defines the content of the 
+%%% dedication page. The page format and location is fixed, and cannot be
+%%% edited.
+%%%
+%%% Acknowledgments page: optional, automatically added to all theses and
+%%% dissertations with a \acknowledgments command. Placed immediately after the
+%%% dedication page (if present) or the approval page (if no dedication page
+%%% is present). The \acknowledgments command defines the content of the 
+%%% acknowledgments page. The page format and location is fixed, and cannot be
+%%% edited.
+
+%%% The table of contents and lists of figures, tables, etc. Except
+%%% for commenting out the lists of tables, figures, or other elements
+%%% missing from your document, you shouldn't need to change any of
+%%% the table of contents commands.
+\begin{Spacing}{1}
+\tableofcontents*  % Leave the * after this command to keep the table of
+                   % contents from appearing in the table of contents
+\listoftables      % Tables
+\listoffigures     % Figures
+\lstlistoflistings % Program Listings, from the listings package
+%%% If you want to rename your list of symbols, edit the
+%%% \renewcommand{\nomname} command accordingly.
+\renewcommand{\nomname}{LIST OF SYMBOLS}
+\printnomenclature % Symbols
+\end{Spacing}
+
+%%% Leave the \mainmatter and command alone. This resets the page numbering
+%%% and styles from what's appropriate for the front matter to what's
+%%% appropriate for the body of your thesis/dissertation.
+\mainmatter
+
+%%% Edit the \include commands below to match the base filenames of
+%%% your chapter files. Do *not* add a .tex extension to the filename
+%%% -- chapter1.tex is included with a \include{chapter1} command.
+\include{\jobname-content/introduction}
+%\include{\jobname-content/analytical}
+%\include{\jobname-content/experimental}
+%\include{\jobname-content/results}
+%\include{\jobname-content/conclusions}
+
+%%% Bibliography settings
+\renewcommand{\bibname}{References}
+\include{\jobname-content/bibliography}
+
+%%%
+%%% Appendices settings
+%%%
+
+%%% Does your thesis have one appendix, or multiple appendices?
+%%% Uncomment or comment each of the next two lines accordingly.
+\renewcommand{\appendixtocname}{Appendix} % I have only one appendix
+%\renewcommand{\appendixtocname}{Appendices} % I have multiple appendices
+
+%%% If you have any appendices on your thesis, leave the \appendix and
+%%% command alone. It resets the ToC style to label your appendices by
+%%% letter rather than number, and typesets the required separation page
+%%% between the Appendices and the main body text. If you have no
+%%% appendices, comment the \appendix command.
+\appendix
+
+%%% Edit the \include commands below to match the relative path and base
+%%% filenames of your appendix files. Do *not* add a .tex extension to the
+%%% filename -- appendix-a.tex is included with a \include{appendix-a}
+%%% command. Obviously, if your thesis has no appendices, then comment them
+%%% all.
+%\include{\jobname-content/code-listings}
+
+%%% Edit the \vita command below to match the relative path and base
+%%% filename of your vita. Do *not* add a .tex extension -- vita.tex is
+%%% included with a \vita{vita} command.
+\vita{\jobname-content/vita}
+
+\end{document}
