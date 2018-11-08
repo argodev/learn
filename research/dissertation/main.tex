@@ -1,0 +1,303 @@
+%%Credits: This file was initially prepared by Mike Baswell in June 2000
+%%         and it was later expanded and modified by Rafal Ablamowicz
+%%Last revision: May 05, 2016, by Rafal Ablamowicz 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\documentclass[11pt, twoside]{report}   
+% LaTeX document uses 10-point fonts by default.  To use
+% 11-point or 12-point fonts, use \documentclass[11pt]{report}
+% or \documentclass[12pt]{report}.
+\usepackage{ttuthesis}            %TTU thesis/dissertation style file dated 12-03-2007
+%\usepackage[top=1in,bottom=1in,inner=1.5in,outer=1in,bindi‌​ngoffset=0in]{geometry}
+\usepackage[top=1in,bottom=1in,inner=1.5in,outer=1in]{geometry}
+%\usepackage{latexsym}            %additional packages that may be read in 
+\usepackage{amssymb}              %to augment generic LaTeX; needed for \mathbb font
+%\usepackage{amsfonts}            %reading in some AMS fonts
+\usepackage{amsthm}
+\usepackage{amsmath}              %needed for \begin{align}... \end{align} environment
+%\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{amssymb, amsmath}
+\usepackage{algorithm}
+\usepackage{float}
+\usepackage{subcaption}
+%\usepackage{array}
+%\usepackage{lipsum}
+\usepackage{algpseudocode}
+\usepackage{soul}
+%\usepackage{readarray}[2016-11-07]
+\usepackage{csvsimple}
+\usepackage{datatool}
+\usepackage{booktabs}
+\usepackage{epigraph}
+\usepackage{longtable}
+\setlength{\epigraphrule}{0pt}
+\usepackage{nomencl}
+\makenomenclature
+\setlength{\nomlabelwidth}{3cm}
+%\usepackage{hyperref}
+%\usepackage{color}
+%
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\removelinebreaks}[1]{\def\\{\relax}#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%NEW%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Do not remove of change these commands that load and set up
+%% package 'tocloft'. This package is necessary to properly align
+%% chapter numbers in TOC flush left without any indentation
+%% (per Graduate School requirement as of 5-05-2016) as well as
+%% table and figure names and numbers in the required listings of
+%% tables and figures, if such appear in this thesis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[titles]{tocloft}
+\cftsetindents{table}{0em}{2.5em}
+\cftsetindents{figure}{0em}{2.5em}
+\renewcommand\cftbeforechapskip{\setlength{15pt}}
+\renewcommand\cftbeforesecskip{\setlength{15pt}}
+\renewcommand\cftbeforesubsecskip{\setlength{15pt}}
+\renewcommand\cftbeforesubsubsecskip{\setlength{15pt}}
+\renewcommand\cftbeforetabskip{\setlength{15pt}}
+\renewcommand\cftbeforefigskip{\setlength{15pt}}
+\renewcommand{\cftchapfont}{\mdseries}
+\renewcommand{\cftchappagefont}{\mdseries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{appendix}
+\renewcommand{\theappendix}{\Alph{appendix}}
+\setcounter{appendix}{0}     %setting appendix counter to 0
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% If you intend to include in your LaTeX document (see example in the appendix.tex file)
+%%% some Maple-generated input/output, you will need to read a Maple style file maple2e.sty.
+%%% Although there is only one explicit command below to read maple2e.sty, additional style
+%%% files are read in automatically. All thes files must be available to PCTeX32.
+
+%\usepackage{maple2e} 
+
+%%% However, if you don't, remark \usepackage{maple2e} by putting % in front of it 
+%%% The following modifies somewhat default spacings defined in maple2e.sty. These lines
+%%% won't be needed if you don't want to include Maple-generated LaTeX code.
+
+%\LeftMapleSkip=-0.15em          %reset left Maple skip to flush w/left margin
+%\MaplePromptString = {\raise 1pt \hbox{$\scriptstyle>$}}              % prompt
+%\MaplePromptSecondary = {\raise 1pt \hbox{$\phantom{\scriptstyle>}$}} % no prompts
+%\AboveMapleSkip  = 0.25ex plus 2 pt minus 0 pt
+%\BelowMapleSkip  = 1.00\AboveMapleSkip
+%\newcommand{\phtab}[1]{% 
+%                         \mbox{\phantom{ #1 }}}  %convenient macro for indenting
+                                                  %a programming code / see appendix.tex file
+
+
+% Set left margin - The default is 1 inch, so the following 
+% command sets a 1.25-inch left margin.
+%\setlength{\oddsidemargin}{0.5in}
+%\addtolength{\oddsidemargin}{-0.125in} %% additional adjustment due to a printer set up
+%\addtolength{\textwidth}{0.25in} %% additional adjustment due to a printer set up
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+%\setlength{\textwidth}{6in}
+
+% Set left margin - The default is 1 inch, so the following 
+% command sets a 1.25-inch left margin.
+%\setlength{\oddsidemargin}{0.25in}
+
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+%\setlength{\textwidth}{6in}
+
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+%\setlength{\topmargin}{-0.25in}
+
+% Set height of the text - What is left will be the bottom margin.
+% In this case, bottom margin is 11in - 0.75in - 9.5in = 0.75in
+%\setlength{\textheight}{6in}
+%\voffset=0pt
+%\hoffset=0pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \report{Dissertation} %default is Thesis, you can put Dissertation here
+    \title{Dimensionally Aligned Signal Projections\\for Signal Characterization} %type title with line breaks \\ in inverted pyramid style
+    \author{Jason Michael Vann} %put your name here
+    \degree{Doctor of Philosophy} %change to, for example, Master of Art if needed
+    \department{Electrical Engineering} %this is your discipline
+    \graduatedate{December 2017} %graduation date 
+    \graduateyear{2017}    %graduation year                         
+    \committee=5           %Total number of committee members including chair and co-chair
+                           %default is \committee=3 but change 3 to 4 or 5 with max reasonable value 6
+                           %if you need more lines for the Graduate Committee
+                           %Members on page (iii), but if you need to have
+                           %a co-chair, change the next line as appropriate
+    \cochair=0             %set to 1 if there is no chairperson but two co-chairpersons
+                           %or to 0 if no co-chairpersons are needed
+                           %NOTE: If there are more than two co-chairpersons needed, please
+                           %contact Dr. R. Ablamowicz, TTU Math Department, (931) 372-3569
+    \tablespagetrue        %default is \tablespagetrue, change to \tablespagefalse if not needed
+                           %listing of tables, if such appear in your thesis, is required by TTU Graduate School             
+    \figurespagetrue       %default is \figurespagetrue, change to \figurespagefalse if not needed
+                           %listing of figures, if such appear in your thesis, is required by TTU Graduate School
+    \symbolpagetrue       %default is \symbolpagetrue, change to \symbolpagefalse if not needed                    
+    \symbolfile{symbols}  %inputs a TeX file called "symbols.tex" with symbols; remark if it is not needed     
+    \permissionpagefalse          %prints a permission page when changed to \permissionpagetrue
+    \dedicationpagetrue          %prints a dedication page, change to \dedicationpagefalse if not needed
+    \acknowledgmentspagetrue      %prints acknowledgments page, change to \acknowledgmentspagefalse if not needed
+    \copyrightpagefalse            %prints a copy right page, change to \copyrightpagefalse if not needed 
+    \sectionnumberstrue           %tells typesetter to print section and subsection numbers, change to \sectionnumbersfalse if not needed   
+    \captiontype=1                %    
+    \appendname{APPENDICES}       %change to APPENDIX if only one appendix is needed
+    \tocheader{CHAPTER}           %default is CHAPTER: This prints correct header in TOC when Appendices or Appendix are/is needed
+                                  %Changing to 'Chapter" will change the header from CHAPTER to Chapter; TTU Graduate School now
+                                  %wants 'CHAPTER' instead of 'Chapter' top appear in TOC
+    \bibname{BIBLIOGRAPHY}          %change to BIBLIOGRAPHY if preferred                      
+    %\psfull                      %use with \psfig to print PostScript file 
+    %\input seteps
+    %\input setbmp
+    %\input setwmf
+
+%%%%%%%%%%%%%%%%%%%%Some new macros defined by the user%%%%%%%%%%%%%%%%%%%%%%
+%%Per new reqirement of the TTU Graduate School, names of Graduate Committee
+%%members must be displayed. Hence, type these names below and change as needed:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\deansname{Mark Stephens}
+\def\gradcommitteechair{Adam Anderson}      %NOTE: Grad committee chair becomes
+                                            %      co-chairperson when there is
+                                            %      at least one co-chairperson
+%\def\gradcommitteecochair{Rafal Ablamowicz}
+\def\memberB{Jeffrey Austen}
+\def\memberC{Wayne Johnson}
+\def\memberD{Ghadir Radman}
+\def\memberE{Doug Talbert}
+
+%%%% Some new macros for this paper -- DELETE MACROS YOU DON'T USE IN YOUR THESIS
+
+\newcommand{\ed}{\end{document}}
+\newcommand{\cl}{C \kern -0.1em \ell}     %Clifford algebra
+\newcommand{\be}{{\bf e}}
+\newcommand{\bx}{{\bf x}}
+\newcommand{\Y}[2]{Y^{#1}_{#2}} %macro command for Young operator
+\newcommand{\G}[2]{G^{#1}_{#2}} %macro command for Garnir element
+\newcommand{\Id}{{\bf 1}}
+\newcommand{\mspn}{\mbox{\rm span}}
+\newcommand{\rev}[1]{#1 \, \tilde{}}
+\newcommand{\alphaq}{\alpha_q}
+
+\newcommand{\uhat}{\hat u}
+\newcommand{\fhat}{\hat f}
+\newcommand{\ftilde}{\tilde f}
+\newcommand{\fbar}{\bar f}
+\newcommand{\reversion}[1]{#1 \, \tilde{}}
+
+\newcommand{\Shat}{\hat S}
+\newcommand{\BKhat}{\hat \mathbb{K}}
+\newcommand{\psihat}{\hat \psi}
+\newcommand{\psitilde}{\tilde \psi}
+\newcommand{\psibar}{\bar \psi}
+\newcommand{\lambdahat}{\hat \lambda}
+
+\newcommand{\BK}{\mathbb{K}}
+\newcommand{\BF}{\mathbb{F}}
+\newcommand{\BC}{\mathbb{C}}
+\newcommand{\BR}{\mathbb{R}}
+\newcommand{\BH}{\mathbb{H}}
+\newcommand{\diag}{\mbox{\rm diag}}
+\newcommand{\spn}{\mbox{\rm span}}
+\newcommand{\bff}{{\bf f}}
+
+\hyphenation{quad-rat-ic}
+\hyphenation{mul-ti-pli-ca-tion}
+\hyphenation{or-thog-o-nal}
+
+\def\rad{\hbox{\rm rad\,}}
+\def\rank{\hbox{\rm rank\,}}
+\def\dim{\hbox{\rm dim\,}}
+\def\Cen{\hbox{\rm Cen\,}}
+
+\newcommand{\onesqhalf}{\frac{1}{\sqrt{2}}}
+\newcommand{\fra}{\frac{1}{2}}
+\newcommand{\beps}{{\bf \epsilon}}
+\newcommand{\A}{{\Cal A}}
+\newcommand{\dbigw}{\mathbin{\dot{\bigw}}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\mq}{{\mbox{{\mathfrak m}}_q}}
+
+\def\negvgap{\vskip-18pt}
+\def\vsgap{\vskip 2pt}
+\def\vqgap{\vskip 3pt}
+\def\vhgap{\vskip 5pt}
+\def\vgap{\vskip 10pt}
+\def\Cal#1{{\Cal #1}}
+\def\im{\mathop{\mathrm {im}}}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem*{mainA}{Theorem A}
+\newtheorem*{mainB}{Theorem B}
+\newtheorem*{mainC}{Theorem C}
+\newtheorem*{mainD}{Theorem D}
+\newtheorem*{mainE}{Theorem E}
+\newtheorem*{mainF}{Theorem F}
+\newtheorem*{keylemma}{Key Lemma}
+\newtheorem*{lemmaA}{Lemma A}
+\newtheorem*{lemmaB}{Lemma B}
+\newtheorem*{lemmaC}{Lemma C}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\hyphenation{quad-rat-ic}
+\hyphenation{mul-ti-pli-ca-tion}
+\hyphenation{or-thog-o-nal}
+
+\def\rad{\hbox{\rm rad\,}}
+\def\rank{\hbox{\rm rank\,}}
+\def\dim{\hbox{\rm dim\,}}
+\def\Cen{\hbox{\rm Cen\,}}
+
+\def\negvgap{\vskip-18pt}
+\def\vsgap{\vskip 2pt}
+\def\vqgap{\vskip 3pt}
+\def\vhgap{\vskip 5pt}
+\def\vgap{\vskip 10pt}
+\def\Cal#1{{\Cal #1}}
+\def\im{\mathop{\mathrm {im}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                                  
+\begin{document}
+\include{abstract}     %reads in your abstract file abstract.tex 
+                         
+\beforepreface         %creates all pages before the permission page
+%\permissionpage        %creates the permission page
+\dedicationpage        %creates the dedication page and prints word DEDICATION followed by the dedication text in the middle 
+                       %of the page, i.e., the text is centered vertically on the page
+\acknowledgmentspage   %creates the acknowledgments page and prints word ACKNOWLEDGMENTS must be 1 inch below the top margin; (aka preface.tex)        
+%\include{Epigraph}  
+\afterpreface          %creates pages after the preface but before chapter 1 
+%\include{Nomenclature}           
+\ttutext               %sets parameters for the actual text, e.g., spacing
+\include{Introduction}     
+\include{ModelDevelopment}   
+\include{DataCollection}    
+\include{DASPAlgorithms}    
+\include{DASPFeatures}   
+\include{DASPConfig}
+\include{DASPClassification}     
+\include{Conclusions}     
+\include{references} 
+\appendixnodots
+\include{appendixHASPI}   
+\include{appendixDASPImages} 
+\include{vita}   
+
+      
+\end{document}   

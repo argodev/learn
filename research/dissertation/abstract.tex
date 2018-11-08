@@ -1,0 +1,22 @@
+% To compile abstract alone, put a % symbol in front of "\comment" and "}%end of comment" below 
+%    and take off the % symbol from "\end{document" at the bottom line. Undo before compiling
+%    the complete thesis
+\comment{
+\documentclass[12pt]{report}   
+\usepackage{ttuthesis}
+    \report{Dissertation}%default is Thesis, option Dissertation
+    \title{Dimensionally Aligned Signal Projection for \\
+            Signal Characterization}
+    \author{Jason Michael Vann}
+    \degree{Doctor of Philosophy}
+    \department{Electrical Engineering}
+\begin{document}
+} %end of comment
+\begin{abstract}                                   
+
+Unintended radiated emissions (URE) can provide valuable electrical device classification and characterization insights for many applications from non-intrusive load monitoring (NILM) to condition-based maintenance. URE processing algorithms often require subject matter expertise to tailor transforms and feature extractors for the specific electrical device of interest.  Dimensionally aligned signal projections (DASP) are presented as a method for projecting aligned signal dimensions, such as frequency harmonics, frequency spacings, and signal modulations, that are inherent to the physical implementation of the vast majority of commercial electronic devices, thus removing the need for an intimate understanding of the underlying physical circuitry and the URE generation mechanism. In addition, methods for the processing of DASP images, extracting statistical features from DASP images, and direct learning from DASP images using convolutional neural networks (CNN) were detailed and evaluated using a data set of URE captures from commercial electronic devices.
+
+Classification of devices using DASP based features was demonstrated with one-versus-all accuracies reaching $100\%$ for linear discriminant analysis (LDA) and k-nearest neighbor (k-NN) classifiers applied to statistical-based features, as well as a CNN learner applied directly to DASP images.  The LDA and CNN learning methods were adapted to multi-class all-versus-all classification and were able to obtain an accuracy of $66.7\%$ across $10$ classes with $97\%$ precision.  The multi-class CNN learner was also tested against DASP images derived from URE clutter devices and was able to correctly identify clutter at an accuracy of $80\%$. 
+                                      
+\end{abstract}
+%\end{document}

@@ -1,0 +1,1290 @@
+% ttuthesis.sty      Maintained by Rafal Ablamowicz, Department of Mathematics, Tennessee Tech
+%                    (931) 372-3662, rablamowicz@tntech.edu                      
+%
+% Last edit:
+%
+%    o May 05, 2016            Rafal Ablamowicz
+%      Two major changes per Graduate School requirements (Beth Smith):
+%      (a) Instead of 'Chapter' appearing as \tocheader in TOC, it must be now 'CHAPTER'.
+%          This has been accomplished by reprogramming part of this file when a list of
+%          tables and/or a list of figures, required by the Graduate School, is printed.
+%          The default value of \tocheader present in Thesis.tex is 'CHAPTER'. Changing
+%          \tocheader{CHAPTER} back to the old \tocheader{Chapter} (or, eliminating it)
+%          would again print 'Chapter' in TOC on page 1 and 2, if present.
+%
+%      (b) Chapter numbers in TOC as well as Table and Figure numbers must now be printed
+%          flushleft without any indentation. This has been accomplished with a help of
+%          an extra-loaded package 'tocloft'.  It would be more desirable to make that 
+%          change inside ttuthesis.sty but I could not do that. Thus, settings for 'tocloft'
+%          appear in the preamble of Thesis.tex before \begin{document} and should not be 
+%          changed without consulting 'tocloft.pdf'       
+%
+%    o April 08, 2015          Rafal Ablamowicz
+%      Change the name and the title of the Dean\\ College of Graduate Studies
+%
+%      Line up "Date" and "Approved for The Faculty" minipage with the page number ii
+%
+%
+%    o July 29, 2014          Rafal Ablamowicz
+%      Change "Presented to the Graduate Faculty of the Graduate School" to
+%             "Presented to the Graduate Faculty of the College of Graduate Studies"
+%      per request from Beth Smith 7/29/2014
+%
+%
+%    o July 10, 2014          Rafal Ablamowicz
+%      Inserted the name of Alice Camuti, Director, Graduate Studies, on page (ii) 
+%      
+%    o December 3, 2010       Rafal Ablamowicz
+%      On Copyright page Graduate School now requires Roman page number ii to appear.
+%      
+%    o December 3, 2007       Rafal Ablamowicz
+%      Fixed a bug in \label and \ref commands. That is, when trying to refer to a section or a subsection with \ref{sectlabel} 
+%      or \ref{subsectlabel} after \label{sectlabel} has been added to a section or \label{subsectlabel} has been added to a
+%      subsection, after processing thesis.tex, only a current chapter number was showing up in the text and not the expected
+%      section or subsection number.  
+%
+%    o November 25, 2005      Rafal Ablamowicz
+%      Added appropriate headers to List of Figures, Symbols, etc. so that , for example, Figure and Page
+%      will appear on each page per Graduate School requirement
+%
+%    o November 21, 2005      Rafal Ablamowicz
+%      Subsection number counter was not advancing properly. \addtocounter{subsection}{1} has been added
+%      to the definition of \subsection and it works properly now. Subsection numbers show up in TOC now
+%      and they advance properly by one. Also, \setcounter{subsection}{0} is reset at the beginning of each 
+%      section for proper numbering of sections.
+%
+%    o April 23, 2003         Rafal Ablamowicz    
+%      New logical switch \ifsectionnumbers allows the user to select printing or not printing section
+%      and subsection numbers by including \sectionnumberstrue or \sectionnumbersfalse in thesis.tex file.
+%      Per TTU Graduate School, subsubsections are not supposed to be used. When used, however, the default
+%      that cannot be changed is not to have numbers in front ot subsubsection titles.
+%
+%    o December 3, 2003		Rafal Ablamowicz
+%      To accommodate requirements of the Graduate School per Shelia Kendrick as of 12/1/2003 such as:
+%      (a) Name of the graduate dean must appear under his signature line on approval page. The name
+%          of the current dean can be changed in Thesis.tex preamble as variable \deansname
+%      (b) Names of Graduate Committee chair, co-chair (if present), and members must appear under their
+%          signature lines on approval page. These names can be changed in Thesis.tex preamble by the thesis
+%          author.
+%      (c) On all Roman numbered pages, e.g., Table of Contents, the Graduate School wants all page numbers to 
+%          appear at the bottom middle of each page. Until now, they appeared only on the first page at
+%          the bottom but if TOC was longer than one page, the following pages had the number printed in
+%          the right upper corner.
+%
+%    o April 25, 2003 Rafal Ablamowicz
+%      Remove a hyphen in Vice-President per Shelia Kendrick
+%
+%    o March 28, 2002           Sasha Shibakov/Rafal Ablamowicz
+%      Modified new command \section command so that section and subsection numbers would appear
+%      in the TOC and in the sections/subsections themselves.
+%
+%    o January 30, 2002         Rafal Ablamowicz
+%      To accommodate requirements of the Graduate School per Shelia Kendrick as of 1/22/2002 such as:
+%      (a) Title must be in inverted pyramid format (this must be controlled by the dissertation author).
+%      (b) Extra spaces added between the title, the name, etc. on the title page.
+%      (c) Dedication must be vertically centered on page (iv).
+%      (d) Acknowledgments must appear only 1 inch below the top margin on page (v).
+%      (e) In the Table of Contents there can only be at most level 2 subheadings. This means that
+%          commands \subsection and \subsubsection cannot be used in the text.
+%      (f) In the Table of Contents title of an appendix should appear as "A: SOME FORMULAS"
+%      (g) In the Table of Contents word ``VITA'' is to be used instead of word ``RESUME''.
+%      (h) In the body of the thesis, figures and tables must appear at the top or bottom of a page.
+%          This is controlled by the option [tb] in the figure and table environments.
+%      (i) Words ``Figure'', ``Equation'', ``Table'' where referring to a specific figure, equation or
+%          table, e.g., Figure (3.1), must be capitalized.
+%
+%    o January 22, 2002         Rafal Ablamowicz
+%      Modified \appendix environment so that word "APPENDIX" does appear in the
+%      appendix title when the appendix title page is printed but it does not appear
+%      in the Table of Contents where only letters A, B, C, etc. would appear instead
+%      of full name "APPENDIX A", "APPENDIX B", "APPENDIX C", etc.
+%      
+%    o January 22, 2002         Rafal Ablamowicz 
+%      Removed printing of duplicate word "Chapter" in the Table of Contents when no
+%      page of tables, no page of figures, and no pages of symbols was printed
+%
+%    o December 3, 2001,        Rafal Ablamowicz
+%      Changed "Dean of Graduate Studies" on the certificate page to
+%      "Associate Vice-President for Research and Graduate Studies"  
+%
+%    o September 21, 2000       Rafal Ablamowicz
+%      Rather than using \include{...} command to include dedication.tex and
+%      preface.tex, user can now decide whether to print page of dedications
+%      and/or page of acknowledgments by using the switches \dedicationpage
+%      and \acknowledgmentspage. This gives correct 1 inch bottom margin
+%      on these two optional pages, while command \include gives wrong
+%      bottom margin.
+%      Commands \dedicationpage and \acknowledgmentspage take now one parameter in
+%      which determines the distance from the top of the page where words
+%      DEDICATION and ACKNOWLEDGMENTS are printed. This distance is controlled now
+%      by the user in the Thesis.tex file.
+%     
+%    o June 8, 2000             Mike Baswell and Rafal Ablamowicz
+%      Co-chair line option added to the Graduate Committee if
+%      \cochair=1 is set in Thesis.tex file; default is \cochair=0
+%      for no co-chair.
+%
+%    o June 8, 2000             Mike Baswell and Rafal Ablamowicz
+%      Changed value \vspace*{10pt} to \vspace*{-12pt} to reduce vertical space
+%      below "TABLE OF CONTENTS", "LIST OF TABLES", and "LIST OF FIGURES" 
+%      which has seemed much too large with \vspace*{10pt}
+%
+%    o June 8, 2000             Mike Baswell and Rafal Ablamowicz
+%      Changed \textheight 8.25in to \textheight 7.75in in pages with:
+%      "TABLE OF CONTENTS", "LIST OF TABLES", and "LIST OF FIGURES"
+%      because the bottom margin was too small
+%
+%    o June 8, 2000             Mike Baswell and Rafal Ablamowicz
+%      Added \input dedication after "Permission to Use" page as an optional
+%      input page to dedicate thesis/dissertation; may be commented out
+% 
+%    o June 8, 2000             Mike Baswell and Rafal Ablamowicz
+%      Input file names changed to more natural as follows:
+%
+%      prefac.tex      changed to preface.tex
+%      append.tex      changed to appendix.tex
+%      symbol.tex      changed to symbols.tex
+%      reference.tex   changed to references.tex
+%
+%    o August 31, 1994          Paul J. Tsai
+%      Add \graduatemonth and modify \graduatedate.
+%      All divided pages, such as appendix and references, are in bold face.
+
+      
+\long\def\comment#1{}
+\hbadness=10000
+\oddsidemargin 0.5in \evensidemargin 0.5in
+\textwidth 6truein
+\topmargin -0.25in
+\headheight 12pt
+\headsep 20pt
+\textheight 8.4in
+\footskip 0.3in     
+\topskip 0pt
+\parindent 3em						       
+\def\setstretch#1{\renewcommand{\baselinestretch}{#1}} 
+   \def\@setsize#1#2#3#4{\@nomath#1                                              
+   \let\@currsize#1\baselineskip                                               
+   #2\baselineskip\baselinestretch\baselineskip                                
+   \parskip\baselinestretch\parskip                                            
+   \setbox\strutbox\hbox{\vrule height.7\baselineskip                          
+      depth.3\baselineskip width\z@}                                          
+   \normalbaselineskip\baselineskip#3#4} 
+   \def\@xfloat#1[#2]{\ifhmode \@bsphack\@floatpenalty -\@Mii\else                
+   \@floatpenalty-\@Miii\fi\def\@captype{#1}\ifinner                           
+      \@parmoderr\@floatpenalty\z@                                             
+    \else\@next\@currbox\@freelist{\@tempcnta\csname ftype@#1\endcsname        
+       \multiply\@tempcnta\@xxxii\advance\@tempcnta\sixt@@n                    
+       \@tfor \@tempa :=#2\do                                                  
+			{\if\@tempa h\advance\@tempcnta \@ne\fi                
+			 \if\@tempa t\advance\@tempcnta \tw@\fi                
+			 \if\@tempa b\advance\@tempcnta 4\relax\fi             
+			 \if\@tempa p\advance\@tempcnta 8\relax\fi             
+	 }\global\count\@currbox\@tempcnta}\@fltovf\fi                         
+    \global\setbox\@currbox\vbox\bgroup                                        
+    \def\baselinestretch{1}\small\normalsize                                   
+    \boxmaxdepth\z@                                                            
+    \hsize\columnwidth \@parboxrestore}                                        
+\long\def\@footnotetext#1{\insert\footins{\def\baselinestretch{1}
+    \footnotesize\interlinepenalty\interfootnotelinepenalty
+    \splittopskip\footnotesep                                                  
+    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM                          
+    \hsize\columnwidth \@parboxrestore                                         
+   \edef\@currentlabel{\csname p@footnote\endcsname\@thefnmark}\@makefntext    
+    {\rule{\z@}{\footnotesep}\ignorespaces                                     
+      #1\strut}}}                                                                                                                          
+\def\singlespace{                                                            
+\vskip\parskip                                                                
+\vskip\baselineskip                                                           
+\def\baselinestretch{1}                                                       
+\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi                       
+\vskip-\parskip                                                               
+\vskip-\baselineskip                                                          
+}                                                                                   
+\def\endsinglespace{\par}								
+\def\doublespacing{                                                             
+\vskip\parskip                                                            
+\vskip\baselineskip                                                           
+\def\baselinestretch{1.655}                                                     
+\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi                      
+\vskip-\parskip                                                           
+\vskip-\baselineskip                                                          
+}                                                                              
+\def\enddoublespacing{\par}                                                                                                               
+\def\spacing#1{\par                                                      
+ \def\baselinestretch{#1}                                                     
+ \ifx\@currsize\normalsize\@normalsize\else\@currsize\fi}                      
+\def\endspacing{\par                                                          
+\vskip \parskip                                                             
+\vskip \baselineskip                                                         
+\endgroup                                                              
+\vskip -\parskip                                                         
+\vskip -\baselineskip                                                        
+\begingroup}
+\def\onehalfspace{\spacing{1.5}}                                               
+\let\endonehalfspace=\endspacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                           
+\everydisplay{                                                                 
+   \abovedisplayskip 4ex plus .2ex                     
+   \belowdisplayskip \abovedisplayskip                                                  
+   \abovedisplayshortskip 4ex plus .2ex                
+   \belowdisplayshortskip  \abovedisplayshortskip}             
+\doublehyphendemerits=100000     % No consecutive line hyphens
+\brokenpenalty=10000             % No broken words across columns/pages
+\widowpenalty=10000              % No orphans at bottom of page
+\clubpenalty=10000               % No widows at top of page
+\setstretch{1.655}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\report#1{\gdef\@report{#1}}
+   \def\@report{Thesis}
+\def\TTU{TENNESSEE TECHNOLOGICAL UNIVERSITY}
+\def\ttu{Tennessee Technological University}
+\def\department#1{\gdef\@department{#1}}
+   \def\@department{Department of Mathematics}
+\def\degree#1{\gdef\@degree{#1}}
+   \def\@degree{Master of Arts}
+\def\graduatemonth#1{\gdef\@graduatemonth{#1}}
+   \def\@graduatemonth{September}
+\def\graduateyear#1{\gdef\@graduateyear{#1}}
+   \def\@graduateyear{2005}
+\def\graduatedate#1{\gdef\@graduatedate{#1}}
+   \def\@graduatedate{\@graduatemonth\ \@graduateyear}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcount\committee \committee=3
+\newcount\cochair   \cochair=1       %Added by Rafal Ablamowicz 6/8/2000
+\newcount\captiontype \captiontype=1 
+\newif\ifcopyrightpage 
+\newif\iffigurespage 
+\newif\iftablespage 
+\newif\ifsymbolpage
+\newif\ifpermissionpage
+\newif\ifdedicationpage       %9/21/2000 R.Ablamowicz
+\newif\ifacknowledgmentspage  %9/21/2000 R.Ablamowicz
+\newif\ifsectionnumbers
+\permissionpagetrue  
+\copyrightpagefalse    
+\figurespagetrue     
+\tablespagetrue     
+\symbolpagetrue
+\sectionnumberstrue
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\symbolfile#1{\gdef\@symfile{#1}}
+\def\@symfile{symbol}     
+\def\approvalskip#1{\gdef\@pprovalskip{#1}}
+\def\@pprovalskip{\ifnum\committee<3 1.35\baselineskip
+		   \else \baselineskip \fi}
+\leftmargini 4.4em
+\leftmarginii 2.2em     % > \labelsep + width of '(m)'
+\leftmarginiii 1.87em   % > \labelsep + width of 'vii.'
+\leftmarginiv 1.7em     % > \labelsep + width of 'M.'
+\leftmarginv 1em
+\leftmarginvi 1em
+\leftmargin\leftmargini
+\labelsep .5em
+\labelwidth\leftmargini\advance\labelwidth-\labelsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@listI{\leftmargin\leftmargini \parsep \z@ \topsep \z@ \itemsep \parsep}
+\let\@listi\@listI
+\@listi 
+\def\@listii{\leftmargin\leftmarginii
+   \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+    \topsep \z@ \parsep \z@ \itemsep \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+    \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+    \topsep \z@ \parsep \z@ \partopsep 1pt plus 0pt minus 1pt
+    \itemsep \topsep}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+\def\titlep{
+    \thispagestyle{empty}
+    \vspace*{-25pt}
+    \noindent
+	\def\baselinestretch{1.6}
+    \begin{center} 
+    \bf    \uppercase\expandafter{\@title} 
+    \end{center}
+	 \vfill
+  \hfil     \hbox{\vrule width 1.75in height 0.02in} \hfil
+	\vfill
+    \begin{center}
+	A \@report \\
+	Presented to \\
+	the Faculty of the College of Graduate Studies\\
+	\ttu \\
+	by \\
+	\@author 
+     \end{center}
+	\vfill
+  \hfil     \hbox{\vrule width 1.75in height 0.02in} \hfil
+	\vfill
+    \begin{center}
+	In Partial Fulfillment \\
+	of the Requirements for the Degree \\
+	{\uppercase\expandafter{\@degree}} \\
+	\@department 
+     \end{center}
+	\vfill
+  \hfil     \hbox{\vrule width 1.75in height 0.02in} \hfil
+	\vfill
+    \begin{center}
+	 \@graduatedate
+    \end{center}
+     \newpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\gdef\copyrightpage{%
+ \ifcopyrightpage
+    %\thispagestyle{empty} RA Dec 3, 2010
+    \vspace*{1pt}
+    \vfill
+    \noindent
+	\def\baselinestretch{1.6}
+    \begin{center}
+    Copyright \copyright\  {\bf \@author}, \@graduateyear \\
+	    All rights reserved
+    \end{center}
+	 \vfill
+     \newpage
+  \fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%This new counter is needed to display names of committee members properly by \memberlong
+\newcounter{numb}
+\setcounter{numb}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\global\newcommand{\approvalpage}[7]{
+\vspace*{-25pt}
+\begin{center}
+\textbf{CERTIFICATE OF APPROVAL OF \uppercase\expandafter{\@report}\\[\baselineskip]
+{\uppercase\expandafter{\@title}}}\\
+by \\
+\@author
+\end{center}
+\vfill
+\advance\committee by -3%in order to use \ifcase  
+\global\def\chairlong{
+\hbox to 3.5in{\shortstack[l]{\vrule width 2.4in height 0.01in \\ \gradcommitteechair, Chairperson}
+  \hspace*{9ex}\shortstack{\vrule width 1in height 0.01in \\ \hspace*{-10.5ex}Date}}
+}
+\global\newcommand{\memberlong}[7]{
+\hbox to 3.5in{\shortstack[l]{\vrule width 2.4in height 0.01in \\ 
+                \ifcase\thenumb\hbox{#1}\or\hbox{#2}\or\hbox{#3}\or\hbox{#4}\or\hbox{#5}\or\hbox{#6}\or\hbox{#7}\fi}
+ \hspace*{9ex}\shortstack{\vrule width 1in height 0.01in \\  \hspace*{-10.5ex}Date}}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%The following added by Rafal Ablamowicz 6/8/2000 \ifnum\thenumb=1\hbox{#1}\else\hbox{#2}\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\cochairlong{
+\hbox to 3.5in{\shortstack[l]{\vrule width 2.4in height 0.01in \\ \gradcommitteecochair, Co-Chair}
+ \hspace*{9ex}\shortstack{\vrule width 1in height 0.01in \\  \hspace*{-10ex}Date}} 
+}
+   Graduate Advisory Committee: \\[\@pprovalskip]
+  \chairlong  \\[\@pprovalskip]
+\ifcase\cochair%for \cochair=0
+       \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb} \\[\@pprovalskip] %%use this line if no co-chair is needed
+\or%for \cochair=1
+       \cochairlong \\[\@pprovalskip]     %%use this line if co-chair is needed
+\else
+   \typeout{*******************************************************************}
+   \typeout{*** Set \cochair=1 in Thesis.tex if co-chair line is needed     ***}
+   \typeout{*** set \cochair=0 in Thesis.tex if no co-chair line is needed. ***}
+   \typeout{*******************************************************************}
+{\bf Set cochair=1 in Thesis.tex if co-chair line is needed}\\
+{\bf or set cochair=0 in Thesis.tex if no co-chair line is needed.}\\
+{\bf For more help contact Dr. Rafal Ablamowicz, Department of Mathematics, TTU.}\\
+\fi
+\ifcase\committee%for \committee=3
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb} \\
+\or%for \committee=4
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb} \\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb} \\
+\or%for \committee=5
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb} \\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb} \\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb} \\
+\or%for \committee=6
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\
+\or%for \committee=7
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\
+\or%for \committee=8
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\[\@pprovalskip]
+  \memberlong{1}{2}{3}{4}{5}{6}{7} \stepcounter{numb}\\
+\else
+   \typeout{*******************************************************************}
+   \typeout{*** See Dr. Ablamowicz for committee members more than 8.       ***}
+   \typeout{*******************************************************************}
+{\large \bf See Dr. Ablamowicz for committee members more than 8.}\\
+\fi
+\vfill
+
+%\hfill %\ \
+\hspace*{2.5in}
+\begin{minipage}[t]{2.5in}
+Approved for the Faculty: \\[\@pprovalskip]
+\hbox to 2.5in{\shortstack[l]{\vrule width 2.5in height 0.01in \\
+      \deansname\\ 
+      Dean\\  College of Graduate Studies}} \\[\@pprovalskip]
+\hbox to 2.5in{\shortstack[l]{\vrule width 2.5in height 0.01in \\ 
+      Date}} 
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%% 
+\newpage}
+\def\abstract{\singlespace \thispagestyle{empty}\c@page\@ne
+\vspace*{-25pt}
+\begin{center}
+\bf AN ABSTRACT OF A \uppercase\expandafter{\@report}\\ [2\baselineskip] %controls amount of skip
+{ \uppercase\expandafter{\@title}} \\[2\baselineskip]
+\@author \\[2\baselineskip]
+\@degree\ in \@department \\[\baselineskip]
+\end{center}
+\singlespace \parskip 1.6ex plus .1ex \par}
+\def\endabstract{\newpage}
+\def\beforepreface{
+	\pagenumbering{roman}
+	\pagestyle{plain}
+	\titlep
+	\copyrightpage 
+	\approvalpage{\memberB}{\memberC}{\memberD}{\memberE}{\memberF}{\memberG}{\memberH}}    
+\def\preface#1{\chapter*{#1}}
+\gdef\permissionpage{
+ \ifpermissionpage
+   \preface{STATEMENT OF PERMISSION TO USE}
+   In presenting this thesis in partial fulfillment of the requirements for a 
+   \@degree\  degree at Tennessee Technological University, I agree that the 
+   University Library shall make it available to borrowers under rules of the 
+   Library.  Brief quotations from this thesis are allowable without special 
+   permission, provided that accurate acknowledgment of the source is made.
+
+   Permission for extensive quotation from or reproduction of this thesis may
+   be granted by my major professor when the proposed use of the material is 
+   for scholarly purposes. Any copying or use of the material in this thesis
+   for financial gain shall not be allowed without my written permission.
+   \\[2\baselineskip]
+   Signature {\vrule  width 2.26in height 0.01in depth 0pt} \\
+   Date {\vrule width 2.6in height 0.01in}\\ 
+ \fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%The following definition lowers words DEDICATION and ACKNOWLEDGMENTS (R. Ablamowicz 9/21/00)
+\def\lowchapterttitle#1#2{\chapter*{\vspace*{#2} #1}}
+\def\vcenterchaptertitle#1{\chapter*{\vfill #1}}      %%For vcentered text on dedication page
+\def\normalchaptertitle#1{\chapter*{#1}}              %%For acknowledgment page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%Definition of the dedication page by R. Ablamowicz, January 30, 2002
+%%%%%Text on the dedication page is now vertically centered
+\gdef\dedicationpage{%
+ \ifdedicationpage
+   \textheight 8.4in
+   \newpage
+   \vcenterchaptertitle{DEDICATION}
+   \input{dedication}
+  \vfill
+  \eject
+\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%Definition of the acknowledgments page by R. Ablamowicz, January 30, 2002
+\gdef\acknowledgmentspage{%
+ \ifacknowledgmentspage
+   \textheight 8.4in
+   \newpage
+   \preface{ACKNOWLEDGMENTS}
+   \input{preface}
+  \vfill
+\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%Definition of the acknowledgments page by R. Ablamowicz, September 21, 2000
+%\gdef\acknowledgmentspage#1{%
+% \ifacknowledgmentspage
+%   \textheight 8.4in
+%   \newpage
+%   \lowchapterttitle{ACKNOWLEDGMENTS}{#1}
+%   \vspace*{-0.25in}
+%   \input{preface}
+%  \vfill
+%\fi}
+
+%%%%%%%% End of Permission, Dedication, and Acknowledgments pages.   9/21/00R. Ablamowicz %%%
+\def\tocheader#1{\gdef\@tocheader{#1}}
+   \def\@tocheader{CHAPTER}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\afterpreface{
+	       \newpage
+	       \textheight 8.4in
+             \def\ps@headings{\let\@mkboth\@gobbletwo%only used by headings
+		 \headheight 48pt   
+		 \headsep 24pt     
+		 \def\@oddfoot{} \def\@evenfoot{}
+		 \def\@oddhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+				     \hbox to \textwidth{\@tocheader \hfil Page}}}
+		 \def\@evenhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+				     \hbox to \textwidth{\@tocheader \hfil Page}} }
+		}
+		\def\ps@myheadings{\let\@mkboth\@gobbletwo
+		  \headheight 12pt 
+		  \headsep 20pt    % \thispagestyle{myheadings}
+		  \def\@oddhead{}  \def\@evenhead{}  %1st page of toc,lot,lof
+		  \def\@oddfoot{\hbox{}\sl\rightmark \hfil \rm\thepage \hfil}
+		  \def\@evenfoot{\hbox{}\sl\rightmark \hfil \rm\thepage \hfil}}
+	        \pagestyle{headings}  %%Changed by R. Ablamowicz to 'plain' on 12-01-03
+                %\pagestyle{plain}
+                \tableofcontents         
+	\iftablespage
+	       \textheight 8.4in
+	       \newpage
+	       \textheight 7.75in  
+	       \def\ps@headings{\let\@mkboth\@gobbletwo
+		 \headheight 48pt    %8/26/94 16pt%8/10/94 48pt
+		 \headsep 24pt       %8/10/94 28pt
+		 \def\@oddfoot{} \def\@evenfoot{}
+		 \def\@oddhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				      \vspace*{24pt}
+				      \hbox to \textwidth{Table \hfil Page}}}
+		 \def\@evenhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				      \vspace*{24pt}
+				      \hbox to \textwidth{Table \hfil Page}} }
+		 }
+            \pagestyle{headings}%%Changed by R. Ablamowicz to 'plain' on 12-01-03
+            %\pagestyle{plain}
+		\listoftables
+	\fi
+
+	\iffigurespage
+	       \textheight 8.4in
+	       \newpage
+	       \textheight 7.75in 
+	       \def\ps@headings{\let\@mkboth\@gobbletwo
+		 \headheight 48pt
+		 \headsep 20pt  
+		 \def\@oddfoot{} \def\@evenfoot{}
+		 \def\@oddhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+				     \hbox to \textwidth{Figure \hfil Page}}}
+		 \def\@evenhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+				     \hbox to \textwidth{Figure \hfil Page}} }
+		  }
+
+	       \pagestyle{headings}%%Changed by R. Ablamowicz to 'plain' on 12-01-03
+               %\pagestyle{plain}
+             \listoffigures
+	\fi
+	\ifsymbolpage
+	       \textheight 8.4in
+	       \newpage
+	       \textheight 8.25in   
+	       \def\ps@headings{\let\@mkboth\@gobbletwo
+		 \headheight 48pt    
+		 \headsep 20pt       
+		 \def\@oddfoot{} \def\@evenfoot{}
+		 \def\@oddhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+		 		     \vspace*{24pt}}}
+		 \def\@evenhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+		 		     \vspace*{24pt}}}
+		 }
+	       \pagestyle{headings}%%Changed by R. Ablamowicz to 'plain' on 12-01-03
+               %\pagestyle{plain}
+		 \listofsymbols 
+		 \input \@symfile
+	\fi
+\iftablespage
+    \addtocontents{toc}{\vskip\parskip\vskip\baselineskip
+    \hbox to \textwidth{\@tocheader \hfill \mbox{}}}
+\else
+    \iffigurespage
+         \addtocontents{toc}{\vskip\parskip\vskip\baselineskip
+	   \hbox to \textwidth{\@tocheader \hfill \mbox{}}}
+    \else
+         \ifsymbolpage
+              \addtocontents{toc}{\vskip\parskip\vskip\baselineskip
+              \hbox to \textwidth{\@tocheader \hfill \mbox{}}}
+         \fi
+    \fi
+\fi
+
+	\textheight 8.4in     
+	\ttutext%}            
+    }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\triplespace{4ex plus .2ex minus .1ex}
+\def\doublespace{1.3ex plus .1ex}
+\def\@chapapp{CHAPTER}%TTU thesis manual 6th edition
+
+\setcounter{tocdepth}{3}%including subsubsection
+\def\numberline#1{\hskip -2.1em \hbox to \@tempdima{\hfil #1}\hskip 1.2em
+		  \advance \leftskip by 2.1em}
+\def\@dottedtocline#1#2#3#4#5{
+    \ifnum #1>\c@tocdepth
+    \else
+	 \vskip\baselineskip
+
+       {\leftskip #2\relax \rightskip \@tocrmarg 
+%\spaceskip 0.3333em \xspaceskip 0.5em %\pretolerance=-1 \tolerance=10000
+ \parfillskip -\rightskip \nohyphen
+	  \parindent #2\relax \@afterindenttrue \interlinepenalty \@M
+	  \leavevmode \@tempdima #3\relax \advance \leftskip \@tempdima
+	  \hbox {}\hskip -\leftskip #4 \nobreak
+	  \leaders \hbox {$\m@th \mkern \@dotsep mu.\mkern \@dotsep mu$}\hfill
+	  \nobreak \hbox to \@pnumwidth {\hfil \rm #5}\par}\fi}
+
+\def\l@text{\@dottedtocline{0}{0em}{0em}}
+\def\l@chapter{\@dottedtocline{0}{1.8em}{1.8em}}
+\def\l@section{\@dottedtocline{1}{5.7em}{1.2em}}
+\def\l@subsection{\@dottedtocline{2}{6.7em}{1.2em}}
+\def\l@subsubsection{\@dottedtocline{3}{7.7em}{1.2em}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\tableofcontents{\@restonecolfalse
+    \if@twocolumn\@restonecoltrue\onecolumn \fi
+    \chapterc*{TABLE OF CONTENTS \@mkboth{\@tocheader}{Page}}
+    \vspace*{-12pt}   %Changed by Rafal Ablamowicz on 6/12/2000
+    {\iftablespage   \hbox to \textwidth{\mbox{}\hfill Page}
+    \else {\iffigurespage \hbox to \textwidth{\mbox{}\hfill Page}
+    \else {\ifsymbolpage \hbox to \textwidth{\mbox{}\hfill Page}
+    \else \hbox to \textwidth{\@tocheader \hfill Page}
+	   \fi \relax}
+         \fi \relax}
+         \fi \relax}
+    {\singlespace \@starttoc{toc}}\if@restonecol\twocolumn\fi}
+
+\def\listoffigures{\@restonecolfalse
+    \if@twocolumn\@restonecoltrue\onecolumn \fi
+    \chapterc*{LIST OF FIGURES \@mkboth{Figure}{Page}}
+    \def\@oddhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+   				     \hbox to \textwidth{Figure \hfil Page}}} %Added by R.A. 11-25-05
+    \def\@evenhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+				     \hbox to \textwidth{Figure \hfil Page}}} %Added by R.A. 11-25-05
+    \vspace*{-12pt} %changed by Rafal Ablamowicz on 6/12/2000
+    \hbox to \textwidth{Figure \hfill Page}
+     \addcontentsline{toc}{text}{LIST OF FIGURES}
+    {\singlespace \@starttoc{lof}}\if@restonecol\twocolumn\fi}
+\def\l@figure{\@dottedtocline{0}{1.8em}{1.8em}}
+
+\def\listoftables{\@restonecolfalse
+    \if@twocolumn\@restonecoltrue\onecolumn \fi
+    \chapterc*{LIST OF TABLES \@mkboth{Table}{Page}}
+    \def\@oddhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+   				     \hbox to \textwidth{Table \hfil Page}}} %Added by R.A. 11-25-05
+    \def\@evenhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+				     \hbox to \textwidth{Table \hfil Page}}} %Added by R.A. 11-25-05
+    \vspace*{-12pt} %Changed by Rafal Ablamowicz on 6/12/2000
+    \hbox to \textwidth{Table \hfill Page}
+     \addcontentsline{toc}{text}{LIST OF TABLES}
+    {\singlespace \@starttoc{lot}}\if@restonecol\twocolumn\fi}
+\let\l@table\l@figure
+\def\listofsymbols{\@restonecolfalse
+    \if@twocolumn\@restonecoltrue\onecolumn \fi
+    \chapterc*{LIST OF SYMBOLS \@mkboth{Symbol}{Description}}
+    \def\@oddhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+   				     %\hbox to \textwidth{Symbol \hfil Page}}} %Added by R.A. 11-25-05
+							 \hbox to \textwidth{}}} %Added by R.A. 11-25-05
+    \def\@evenhead{\vbox{\hbox to \textwidth{\hfil \thepage}
+				     \vspace*{24pt}
+				     %\hbox to \textwidth{Symbol \hfil Page}}} %Added by R.A. 11-25-05
+						 \hbox to \textwidth{}}} %Added by R.A. 11-25-05
+    \vspace*{10pt}%\mbox{}\\[0.5ex]
+     \addcontentsline{toc}{text}{LIST OF SYMBOLS}
+    \singlespace\if@restonecol\twocolumn\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@makechapterhead#1{       
+   \vspace*{-25pt}
+   {\normalsize \centering
+   \ifnum \c@secnumdepth > \m@ne
+    {\bf \@chapapp{} \thechapter}
+     \\ \fi
+     {\bf \uppercase{#1}} \\[1.5\baselineskip]
+   \nobreak}\relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@makeschapterhead#1{       
+   \vspace*{-25pt}
+   {\normalsize 
+    \begin{center} \bf \uppercase{#1} \end{center} 
+    \vspace*{1.5\baselineskip}
+   \nobreak}\relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\chapter{\textheight=8.4in \clearpage \textheight=8.4in%8/10/94
+	     \thispagestyle{plain}\global\@topnum\z@
+	     \@afterindenttrue 
+	     \secdef\@chapter\@schapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\chapterc{\clearpage\thispagestyle{myheadings}\global\@topnum\z@
+	     \@afterindenttrue 
+	     \secdef\@chapter\@schapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+     \refstepcounter{chapter}
+     \typeout{\@chapapp\space\thechapter.}
+     \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter.}#1}
+     \else \addcontentsline{toc}{chapter}{#1}\fi
+      \chaptermark{#1}
+      \if@twocolumn
+	      \@topnewpage[\@makechapterhead{#2}]
+      \else   \@makechapterhead{#2}%#2=CHAPTER number
+	      \@afterheading
+      \fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Redefining \section and \subsection so that section and subsection numbers are 
+%% printed or not depending on the logical switch \ifsectionnumbers set to 
+%% \sectionnumberstrue or \sectionnumbersfalse.
+%%
+%% NOTE: subsubsections are not allowed by the TTU Grad School. If used, they will be
+%% unnumbered.
+%% 
+%% By Rafal Ablamowicz, 4-23-2004
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\gdef\section[#1]#2{%
+     \ifsectionnumbers
+               \refstepcounter{section}
+               \addtocounter{section}{-1}
+               %\setcounter{subsection}{0}   
+               {\@startsection {section}{1}{\z@}%{3.5ex plus 1ex minus .2ex}
+               {\triplespace}{\triplespace}
+               {\hyphenpenalty=2000  \addtocounter{section}{1}\centering{\normalsize \bf \thesection\ #2}
+               \addcontentsline{toc}{section}{\thesection\ #1}}* \relax}
+     \else
+               {\@startsection {section}{1}{\z@}%{3.5ex plus 1ex minus .2ex}
+               {\triplespace}{\triplespace}
+               {\hyphenpenalty=2000  \centering{\normalsize \bf #2}
+               \addcontentsline{toc}{section}{#1}}* \relax}
+     \fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\gdef\section#1{%
+%     \ifsectionnumbers
+%               \setcounter{subsection}{0}   
+%               {\@startsection {section}{1}{\z@}%{3.5ex plus 1ex minus .2ex}
+%               {\triplespace}{\triplespace}
+%               {\hyphenpenalty=2000  \addtocounter{section}{1}\centering{\normalsize \bf \thesection\ #1}
+%               \addcontentsline{toc}{section}{\thesection\ #1}}* \relax}
+%     \else
+%               {\@startsection {section}{1}{\z@}%{3.5ex plus 1ex minus .2ex}
+%               {\triplespace}{\triplespace}
+%               {\hyphenpenalty=2000  \centering{\normalsize \bf #1}
+%               \addcontentsline{toc}{section}{#1}}* \relax}
+%\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\gdef\subsection[#1]#2{%
+     \ifsectionnumbers 
+               \refstepcounter{subsection}
+               \addtocounter{subsection}{-1}
+               {\@startsection {subsection}{2}{\z@}
+               {\triplespace}{\triplespace}
+               {\hyphenpenalty=2000 \addtocounter{subsection}{1}\raggedright {\normalsize \bf \thesubsection\ #2}
+               \addcontentsline{toc}{subsection}{\thesubsection\ #1}}* \relax}
+     \else
+               {\@startsection {subsection}{2}{\z@}
+               {\triplespace}{\triplespace}
+               {\hyphenpenalty=2000 \raggedright {\normalsize \bf #2}
+               \addcontentsline{toc}{subsection}{#1}}* \relax}
+\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%These commands were last revised on March 28, 2002, to include section
+%%%numbers in the headers of the sections and in the TOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ifsectionnumbers
+%\def\section#1{\@startsection {section}{1}{\z@}%{3.5ex plus 1ex minus .2ex}
+%    {\triplespace}{\triplespace}
+%    {\hyphenpenalty=2000  \addtocounter{section}{1}\centering{\normalsize \bf \thesection\ #1}
+%     \addcontentsline{toc}{section}{\thesection\ #1}}* \relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\def\subsection#1{\@startsection {subsection}{2}{\z@}
+%    {\triplespace}{\triplespace}
+%    {\hyphenpenalty=2000 \raggedright {\normalsize \bf \thesubsection\ #1}
+%    \addcontentsline{toc}{subsection}{\thesubsection\ #1}}* \relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\def\subsubsection#1{\@startsection {subsubsection}{3}{\parindent}
+%    {\doublespace}{-1em}
+%    {\hyphenpenalty=2000 \normalsize \hskip\parindent{\bf \thesubsubsection\ #1}
+%    \addcontentsline{toc}{subsubsection}{\thesubsubsection\ #1}}* \relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\def\section#1{\@startsection {section}{1}{\z@}%{3.5ex plus 1ex minus .2ex}
+%    {\triplespace}{\triplespace}
+%    {\hyphenpenalty=2000  \centering{\normalsize \bf #1}
+%    \addcontentsline{toc}{section}{#1}}* \relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\def\subsection#1{\@startsection {subsection}{2}{\z@}
+%    {\triplespace}{\triplespace}
+%    {\hyphenpenalty=2000 \raggedright {\normalsize \bf #1}
+%    \addcontentsline{toc}{subsection}{#1}}* \relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\subsubsection[#1]#2{\@startsection {subsubsection}{3}{\parindent}
+    {\doublespace}{-1em}
+    {\hyphenpenalty=2000 \normalsize \hskip\parindent{\bf #2.}
+    \addcontentsline{toc}{subsubsection}{#1}}* \relax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nohyphen{
+   \hyphenpenalty=10000 \exhyphenpenalty=10000 \pretolerance=10000} %no hyphens
+\def\nohyphens{\nohyphen
+\penalty10000 \hskip.5em plus 3em \penalty0 \hskip-.17em plus-3em minus.11em}
+ \long\def\@makecaption#1#2{
+   \vskip 10pt
+\ifnum\captiontype=2%It's not supported for \captiontype=2 and 3,  
+		    %because of the definition of \thetable and \thefigure
+       \setbox\@tempboxa\hbox{#1\hspace{1em}#2}
+       {\ifdim \wd\@tempboxa >\hsize   % IF longer than one line:
+	   {\rightskip 0pt plus 2em \spaceskip 0.3333em \xspaceskip 0.5em
+	   #1\hspace{1em}#2}\par%THEN set as ordinary paragraph.
+	\else                        %   ELSE  center.
+	   \hbox to\hsize{\hfil\box\@tempboxa\hfil}
+	\fi}
+\else \ifnum\captiontype=3
+	 \begin{center}
+	   #1\\[\doublespace]
+	   #2
+	 \end{center}      
+       \else
+	 \setbox\@tempboxa\hbox{#1.\hspace{1em}#2}
+	 {\ifdim \wd\@tempboxa >\hsize   % IF longer than one line:
+	   {\nohyphens
+	   \hspace*{3em}#1.\hspace{1em}#2}\par%THEN set as ordinary paragraph.
+	 \else                        %   ELSE  center.
+	   \hbox to\hsize{\hfil\box\@tempboxa\hfil}
+	 \fi}
+	\fi
+\fi}
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
+\def\bottomfraction{0.9}%0.3=>0.9
+\def\topfraction{0.9}%0.7=>0.9
+\def\textfraction{0.1}%0.2=>0.1
+\def\floatpagefraction{0.9}%0.5=>0.9 5/10/93
+\ifx\@Hxfloat\@Hundef\else\expandafter\endinput\fi 
+\let\@Hxfloat\@xfloat
+\def\@xfloat#1[{\@ifnextchar{H}{\@HHfloat{#1}[}{\@Hxfloat{#1}[}}
+\def\@HHfloat#1[H]{%
+   \expandafter\let\csname end#1\endcsname\end@Hfloat
+   \vskip\intextsep\def\@captype{#1}\parindent\z@ \ignorespaces}
+\def\end@Hfloat{\vskip \intextsep}
+\def\bibname#1{\gdef\@bibname{#1}}
+\def\@bibname{BIBLIOGRAPHY}     
+\def\thebibliography#1{\textheight=8.4in\clearpage\textheight=8.4in
+ \thispagestyle{plain}\singlespace
+  \addcontentsline{toc}{text}{\uppercase\expandafter{\@bibname}}
+      \vspace*{1pt}
+      \vfill
+	    \begin{center}
+	     \bf \uppercase\expandafter{\@bibname}%8/31/94 pjt
+	    \end{center}
+      \vfill
+  \list{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \usecounter{enumi}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \tolerance10000 \brokenpenalty10000
+    \sfcode`\.=1000\relax 
+      \clearpage\parskip 3.2ex plus .2ex minus .1ex
+}
+     
+\let\endthebibliography=\endlist
+     
+\def\@biblabel#1{[#1]}
+\def\@cite#1{[#1]}      
+\def\appendname#1{\gdef\@appendname{#1}}
+    \def\@appendname{APPENDIX}   
+\def\appendix{\textheight=8.4in\clearpage\textheight=8.4in
+  \thispagestyle{plain}\singlespace
+	%\addcontentsline{toc}{text}{APPENDICES} % Added Appendix jmv 11/10/17
+\addcontentsline{toc}{text}{\removelinebreaks{\uppercase\expandafter{\@appendname}}} % Added Appendix jmv 11/10/17
+ \vspace*{1pt}
+      \vfill
+	    %\begin{center}
+      %      \bf APPENDIX
+	    %\end{center}
+			\bigskip
+			\begin{center}
+					\bf \uppercase\expandafter{\@appendname}%01/18/2002 R. Ablamowicz
+	    \end{center}
+      \vfill
+      \pagebreak
+\setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\def\@chapapp{APPENDIX}
+\def\thechapter{\Alph{chapter}}
+}
+
+%%%%%%%%%%%%%%%This new command prints word APPENDICES without dots and page number
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\appendixnodots{\textheight=8.4in\clearpage\textheight=8.4in
+                    \thispagestyle{plain}\singlespace
+\addtocontents{toc}{\vskip\parskip\vskip\baselineskip
+   \hbox to \textwidth{\uppercase\expandafter{\@appendname}
+   \hfill \mbox{}}}
+      \vspace*{1pt}
+      \vfill
+	    \begin{center}
+	      \bf \uppercase\expandafter{\@appendname}%8/31/94 pjt
+	    \end{center}
+      \vfill
+      \pagebreak
+\setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\def\@chapapp{APPENDIX}
+\def\thechapter{\Alph{chapter}}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\vitaname#1{\gdef\@vitaname{#1}}
+\def\@vitaname{VITA}     
+\def\vita{
+  \chapter*{\uppercase\expandafter{\@vitaname}}   \spacing{1.655}
+  \addcontentsline{toc}{text}{\uppercase\expandafter{\@vitaname}}
+   }
+\def\ttutext{
+   \newpage
+   \c@page\@ne
+   \pagenumbering{arabic}
+   \pagestyle{myheadings}
+   \spacing{1.655}
+   \def\@oddfoot{} \def\evenfoot{}
+   \def\@oddhead{\hbox{} \hfil \rm\thepage}
+   \def\@evenhead{\hbox{} \hfil \rm\thepage}}
+\ttutext
+\catcode`\@=11\relax
+\newwrite\@unused
+\def\typeout#1{{\let\protect\string\immediate\write\@unused{#1}}}
+\typeout{psfig/tex 1.2-dvips}     
+\def\figurepath{./}
+\def\psfigurepath#1{\edef\figurepath{#1}}
+\def\@nnil{\@nil}
+\def\@empty{}
+\def\@psdonoop#1\@@#2#3{}
+\def\@psdo#1:=#2\do#3{\edef\@psdotmp{#2}\ifx\@psdotmp\@empty \else
+    \expandafter\@psdoloop#2,\@nil,\@nil\@@#1{#3}\fi}
+\def\@psdoloop#1,#2,#3\@@#4#5{\def#4{#1}\ifx #4\@nnil \else
+       #5\def#4{#2}\ifx #4\@nnil \else#5\@ipsdoloop #3\@@#4{#5}\fi\fi}
+\def\@ipsdoloop#1,#2\@@#3#4{\def#3{#1}\ifx #3\@nnil
+       \let\@nextwhile=\@psdonoop \else
+      #4\relax\let\@nextwhile=\@ipsdoloop\fi\@nextwhile#2\@@#3{#4}}
+\def\@tpsdo#1:=#2\do#3{\xdef\@psdotmp{#2}\ifx\@psdotmp\@empty \else
+    \@tpsdoloop#2\@nil\@nil\@@#1{#3}\fi}
+\def\@tpsdoloop#1#2\@@#3#4{\def#3{#1}\ifx #3\@nnil
+       \let\@nextwhile=\@psdonoop \else
+      #4\relax\let\@nextwhile=\@tpsdoloop\fi\@nextwhile#2\@@#3{#4}}
+\def\psdraft{
+	\def\@psdraft{0}
+}
+\def\psfull{
+	\def\@psdraft{100}
+}
+\psfull
+\newif\if@prologfile
+\newif\if@postlogfile
+\newif\if@noisy
+\def\pssilent{
+	\@noisyfalse
+}
+\def\psnoisy{
+	\@noisytrue
+}
+\psnoisy
+\newif\if@bbllx
+\newif\if@bblly
+\newif\if@bburx
+\newif\if@bbury
+\newif\if@height
+\newif\if@width
+\newif\if@rheight
+\newif\if@rwidth
+\newif\if@clip
+\newif\if@verbose
+\def\@p@@sclip#1{\@cliptrue}
+\def\@p@@sfile#1{\def\@p@sfile{null}
+		\openin1=#1
+		\ifeof1\closein1
+		       \openin1=\figurepath#1
+			\ifeof1\typeout{Error, File #1 not found}
+			\else\closein1
+			    \edef\@p@sfile{\figurepath#1}
+			\fi
+		 \else\closein1
+		       \def\@p@sfile{#1}
+		 \fi}
+\def\@p@@sfigure#1{\def\@p@sfile{null}
+		\openin1=#1
+		\ifeof1\closein1
+		       \openin1=\figurepath#1
+			\ifeof1\typeout{Error, File #1 not found}
+			\else\closein1
+			    \def\@p@sfile{\figurepath#1}
+			\fi
+		 \else\closein1
+		       \def\@p@sfile{#1}
+		 \fi}
+     
+\def\@p@@sbbllx#1{
+		\@bbllxtrue
+		\dimen100=#1
+		\edef\@p@sbbllx{\number\dimen100}
+}
+\def\@p@@sbblly#1{
+		\@bbllytrue
+		\dimen100=#1
+		\edef\@p@sbblly{\number\dimen100}
+}
+\def\@p@@sbburx#1{
+		\@bburxtrue
+		\dimen100=#1
+		\edef\@p@sbburx{\number\dimen100}
+}
+\def\@p@@sbbury#1{
+		\@bburytrue
+		\dimen100=#1
+		\edef\@p@sbbury{\number\dimen100}
+}
+\def\@p@@sheight#1{
+		\@heighttrue
+		\dimen100=#1
+		\edef\@p@sheight{\number\dimen100}
+}
+\def\@p@@swidth#1{
+		\@widthtrue
+		\dimen100=#1
+		\edef\@p@swidth{\number\dimen100}
+}
+\def\@p@@srheight#1{
+		\@rheighttrue
+		\dimen100=#1
+		\edef\@p@srheight{\number\dimen100}
+}
+\def\@p@@srwidth#1{
+		\@rwidthtrue
+		\dimen100=#1
+		\edef\@p@srwidth{\number\dimen100}
+}
+\def\@p@@ssilent#1{
+		\@verbosefalse
+}
+\def\@p@@sprolog#1{\@prologfiletrue\def\@prologfileval{#1}}
+\def\@p@@spostlog#1{\@postlogfiletrue\def\@postlogfileval{#1}}
+\def\@cs@name#1{\csname #1\endcsname}
+\def\@setparms#1=#2,{\@cs@name{@p@@s#1}{#2}}
+\def\ps@init@parms{
+		\@bbllxfalse \@bbllyfalse
+		\@bburxfalse \@bburyfalse
+		\@heightfalse \@widthfalse
+		\@rheightfalse \@rwidthfalse
+		\def\@p@sbbllx{}\def\@p@sbblly{}
+		\def\@p@sbburx{}\def\@p@sbbury{}
+		\def\@p@sheight{}\def\@p@swidth{}
+		\def\@p@srheight{}\def\@p@srwidth{}
+		\def\@p@sfile{}
+		\def\@p@scost{10}
+		\def\@sc{}
+		\@prologfilefalse
+		\@postlogfilefalse
+		\@clipfalse
+		\if@noisy
+			\@verbosetrue
+		\else
+			\@verbosefalse
+		\fi
+}
+\def\parse@ps@parms#1{
+		\@psdo\@psfiga:=#1\do
+		   {\expandafter\@setparms\@psfiga,}}
+\newif\ifno@bb
+\newif\ifnot@eof
+\newread\ps@stream
+\def\bb@missing{
+	\if@verbose{
+		\typeout{psfig: searching \@p@sfile \space  for bounding box}
+	}\fi
+	\openin\ps@stream=\@p@sfile
+	\no@bbtrue
+	\not@eoftrue
+	\catcode`\%=12
+	\loop
+		\read\ps@stream to \line@in
+		\global\toks200=\expandafter{\line@in}
+		\ifeof\ps@stream \not@eoffalse \fi
+		\@bbtest{\toks200}
+		\if@bbmatch\not@eoffalse\expandafter\bb@cull\the\toks200\fi
+	\ifnot@eof \repeat
+	\catcode`\%=14
+}
+\catcode`\%=12
+\newif\if@bbmatch
+\def\@bbtest#1{\expandafter\@a@\the#1%%BoundingBox:\@bbtest\@a@}
+\long\def\@a@#1%%BoundingBox:#2#3\@a@{\ifx\@bbtest#2\@bbmatchfalse
+       \else\@bbmatchtrue\fi}
+\long\def\bb@cull#1 #2 #3 #4 #5 {
+	\dimen100=#2 bp\edef\@p@sbbllx{\number\dimen100}
+	\dimen100=#3 bp\edef\@p@sbblly{\number\dimen100}
+	\dimen100=#4 bp\edef\@p@sbburx{\number\dimen100}
+	\dimen100=#5 bp\edef\@p@sbbury{\number\dimen100}
+	\no@bbfalse
+}
+\catcode`\%=14
+%
+\def\compute@bb{
+		\no@bbfalse
+		\if@bbllx \else \no@bbtrue \fi
+		\if@bblly \else \no@bbtrue \fi
+		\if@bburx \else \no@bbtrue \fi
+		\if@bbury \else \no@bbtrue \fi
+		\ifno@bb \bb@missing \fi
+		\ifno@bb \typeout{FATAL ERROR: no bb supplied or found}
+			\no-bb-error
+		\fi
+		%
+		\count203=\@p@sbburx
+		\count204=\@p@sbbury
+		\advance\count203 by -\@p@sbbllx
+		\advance\count204 by -\@p@sbblly
+		\edef\@bbw{\number\count203}
+		\edef\@bbh{\number\count204}
+}
+\def\in@hundreds#1#2#3{\count240=#2 \count241=#3
+		     \count100=\count240        % 100 is first digit #2/#3
+		     \divide\count100 by \count241
+		     \count101=\count100
+		     \multiply\count101 by \count241
+		     \advance\count240 by -\count101
+		     \multiply\count240 by 10
+		     \count101=\count240        %101 is second digit of #2/#3
+		     \divide\count101 by \count241
+		     \count102=\count101
+		     \multiply\count102 by \count241
+		     \advance\count240 by -\count102
+		     \multiply\count240 by 10
+		     \count102=\count240        % 102 is the third digit
+		     \divide\count102 by \count241
+		     \count200=#1\count205=0
+		     \count201=\count200
+			\multiply\count201 by \count100
+			\advance\count205 by \count201
+		     \count201=\count200
+			\divide\count201 by 10
+			\multiply\count201 by \count101
+			\advance\count205 by \count201
+		     \count201=\count200
+			\divide\count201 by 100
+			\multiply\count201 by \count102
+			\advance\count205 by \count201
+		     \edef\@result{\number\count205}
+}
+\def\compute@wfromh{
+		\in@hundreds{\@p@sheight}{\@bbw}{\@bbh}
+		\edef\@p@swidth{\@result}
+}
+\def\compute@hfromw{
+		\in@hundreds{\@p@swidth}{\@bbh}{\@bbw}
+		\edef\@p@sheight{\@result}
+}
+\def\compute@handw{
+		\if@height
+			\if@width
+			\else
+				\compute@wfromh
+			\fi
+		\else
+			\if@width
+				\compute@hfromw
+			\else
+				\edef\@p@sheight{\@bbh}
+				\edef\@p@swidth{\@bbw}
+			\fi
+		\fi
+}
+\def\compute@resv{
+		\if@rheight \else \edef\@p@srheight{\@p@sheight} \fi
+		\if@rwidth \else \edef\@p@srwidth{\@p@swidth} \fi
+}
+\def\compute@sizes{
+	\compute@bb
+	\compute@handw
+	\compute@resv
+}
+\def\psfig#1{\vbox {
+	\ps@init@parms
+	\parse@ps@parms{#1}
+	\compute@sizes
+	\ifnum\@p@scost<\@psdraft{
+		\if@verbose{
+			\typeout{psfig: including \@p@sfile \space }
+		}\fi
+		\special{ps::[begin]    \@p@swidth \space \@p@sheight \space
+				\@p@sbbllx \space \@p@sbblly \space
+				\@p@sbburx \space \@p@sbbury \space
+				startTexFig \space }
+		\if@clip{
+			\if@verbose{
+				\typeout{(clip)}
+			}\fi
+			\special{ps:: doclip \space }
+		}\fi
+		\if@prologfile
+		    \special{ps: plotfile \@prologfileval \space } \fi
+		\special{ps: plotfile \@p@sfile \space }
+		\if@postlogfile
+		    \special{ps: plotfile \@postlogfileval \space } \fi
+		\special{ps::[end] endTexFig \space }
+		\vbox to \@p@srheight true sp{
+			\hbox to \@p@srwidth true sp{
+				\hss
+			}
+		\vss
+		}
+	}\else{
+		\vbox to \@p@srheight true sp{
+		\vss
+			\hbox to \@p@srwidth true sp{
+				\hss
+				\if@verbose{
+					\@p@sfile
+				}\fi
+				\hss
+			}
+		\vss
+		}
+	}\fi
+}}
+\def\psglobal{\typeout{psfig: PSGLOBAL is OBSOLETE; use psprint -m instead}}
+\catcode`\@=12\relax
+
+\psdraft
+\newdimen\rotdimen
+\def\vspec#1{\special{ps:#1}}%  passes #1 verbatim to the output
+\def\rotstart#1{\vspec{gsave currentpoint currentpoint translate
+   #1 neg exch neg exch translate}}% #1 can be any origin-fixing transformation
+\def\rotfinish{\vspec{currentpoint grestore moveto}}% gets back in synch
+\def\rotr#1{\rotdimen=\ht#1\advance\rotdimen by\dp#1%
+   \hbox to\rotdimen{\hskip\ht#1\vbox to\wd#1{\rotstart{90 rotate}%
+   \box#1\vss}\hss}\rotfinish}
+\def\rotl#1{\rotdimen=\ht#1\advance\rotdimen by\dp#1%
+   \hbox to\rotdimen{\vbox to\wd#1{\vskip\wd#1\rotstart{270 rotate}%
+   \box#1\vss}\hss}\rotfinish}%
+\def\rotu#1{\rotdimen=\ht#1\advance\rotdimen by\dp#1%
+   \hbox to\wd#1{\hskip\wd#1\vbox to\rotdimen{\vskip\rotdimen
+   \rotstart{-1 dup scale}\box#1\vss}\hss}\rotfinish}%
+\def\rotf#1{\hbox to\wd#1{\hskip\wd#1\rotstart{-1 1 scale}%
+   \box#1\hss}\rotfinish}%
+\newbox\rotbox
+\newenvironment{sidetable}{\begin{table}[p]%
+	\setbox\rotbox\vbox to \textwidth\bgroup\hsize=\textheight\vss}%
+	{\vss\egroup \rotl\rotbox\end{table}}
+\newenvironment{sidefigure}{\begin{figure}[p]%
+	\setbox\rotbox\vbox to \textwidth\bgroup\hsize=\textheight\vss}%
+	{\vss\egroup \rotl\rotbox\end{figure}}
+
+%%%End of file

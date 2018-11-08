@@ -1,0 +1,73 @@
+% To compile symbol page alone, put a % symbol in front of "\comment" and "}%end of comment" below 
+%    and take off the % symbol from "\end{document" at the bottom line. Undo before compiling
+%    the complete thesis
+\comment{
+\documentclass[12pt]{report}   
+\usepackage{ttuthesis}
+    \report{Dissertation}%default is Thesis, option Dissertation
+    \symbolpagefalse                                    
+\begin{document}
+} %end of comment
+
+%%Automatic wrapping does work in the tabular environment. To change the width of the third column, %%i.e., the paragraph column where you describe your symbols, change option 4.5in in p{4.5in} to %%a smaller value. Larger value will make margins too small.
+
+\vskip -30pt
+\noindent
+\begin{longtable}{lcp{4.5in}}   %%change 4in to some other width here
+		$\left| ~ \right|$ && Absolute Value Function\\
+		$\bf{C}_{XX}$ && Auto-covariance Function\\
+		$\ast$ && Convolution\\
+		$\textbf{E}$ && Expected Value \\
+		$\nabla$ && Gradient Operator\\
+		$\mathcal{O}$ && Order of Function \\
+		$\sum{}$ && Summation Operator\\
+		ACC && Accuracy\\
+		CMASP && Cross-Modulation Aligned Signal Projection\\
+		CNN && Convolutional Neural Network\\
+		DASP && Dimensionally Aligned Signal Projection\\
+		dB && Decibels\\
+		EM && Electromagnetic\\
+		EMI && Electromagnetic Interference\\
+		FASP && Frequency Aligned Signal Projection\\
+		FFT && Fast Fourier Transform\\
+		FNR && False Negative Rate\\
+		FPR && False Positive Rate\\
+		GPS && Global Positioning System\\
+		HASP && Harmonically Aligned Signal Projection\\
+		HASP-D && Harmonically Aligned Signal Projection - Decimation Type\\
+		HASP-F && Harmonically Aligned Signal Projection - Fixed Type\\
+		HASP-I && Harmonically Aligned Signal Projection - Interpolation Type\\
+		Hz && Hertz\\
+		IS && Information Security\\
+		kHz && Kilohertz\\
+		k-NN && k-Nearest Neighbor\\
+		kS/s && Kilosamples per Second\\
+		LDA && Linear Discriminant Analysis\\
+		LoG && Laplacian of Gaussian\\
+		MASP && Modulation Aligned Signal Projection\\
+		MHz && Megahertz\\
+		MS/s && Megasamples per Second\\
+		NA && Not Applicable\\
+		NILM && Non-Intrusive Load Monitoring\\
+		PCA && Principal Component Analysis\\
+		ppm && parts-per-million\\
+		PR && Precision\\
+		PSD && Power Spectral Density\\
+		PWM && Pulse Width Modulation\\
+		QDA && Quadrature Discriminant Analysis\\
+		reLU && Rectifying Linear Unit\\
+		RF && Radio Frequency\\
+		ROC && Receiver Operation Characteristic\\
+		SCAP && Spectral Correlation Aligned Projection\\
+		SGDM && Stochastic Gradient Descent with Momentum\\
+		STFT && Short-time Fourier Transform\\
+		SVM && Support Vector Machine\\
+		TCXO && Temperature Controlled Crystal Oscillator\\
+		TIFF && Tag Image File Format\\
+		TNR && True Negative Rate\\
+		TPR && True Positive Rate\\
+		URE && Unintended Radiated Emissions\\
+		USRP && Universal Software Radio Peripheral\\
+\end{longtable}
+
+%\end{document}
