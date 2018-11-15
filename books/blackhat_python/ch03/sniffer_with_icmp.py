@@ -5,7 +5,7 @@ import struct
 from ctypes import *
 
 # host to listen on
-host = '160.91.108.74'
+host = '192.168.3.157'
 
 # our IP header
 class IP(Structure):
