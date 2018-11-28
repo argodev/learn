@@ -129,7 +129,7 @@
     \degree{Doctor of Philosophy} %change to, for example, Master of Art if needed
     \department{Computer Science} %this is your discipline
     \graduatedate{December 2019} %graduation date 
-    \graduateyear{2019}    %graduation year                         
+    \graduateyear{2019}    %graduation year
     \committee=5           %Total number of committee members including chair and co-chair
                            %default is \committee=3 but change 3 to 4 or 5 with max reasonable value 6
                            %if you need more lines for the Graduate Committee
@@ -140,23 +140,23 @@
                            %NOTE: If there are more than two co-chairpersons needed, please
                            %contact Dr. R. Ablamowicz, TTU Math Department, (931) 372-3569
     \tablespagetrue        %default is \tablespagetrue, change to \tablespagefalse if not needed
-                           %listing of tables, if such appear in your thesis, is required by TTU Graduate School             
+                           %listing of tables, if such appear in your thesis, is required by TTU Graduate School
     \figurespagetrue       %default is \figurespagetrue, change to \figurespagefalse if not needed
                            %listing of figures, if such appear in your thesis, is required by TTU Graduate School
-    \symbolpagetrue       %default is \symbolpagetrue, change to \symbolpagefalse if not needed                    
-    \symbolfile{symbols}  %inputs a TeX file called "symbols.tex" with symbols; remark if it is not needed     
+    \symbolpagetrue        %default is \symbolpagetrue, change to \symbolpagefalse if not needed
+    \symbolfile{symbols}   %inputs a TeX file called "symbols.tex" with symbols; remark if it is not needed
     \permissionpagefalse          %prints a permission page when changed to \permissionpagetrue
-    \dedicationpagetrue          %prints a dedication page, change to \dedicationpagefalse if not needed
+    \dedicationpagetrue           %prints a dedication page, change to \dedicationpagefalse if not needed
     \acknowledgmentspagetrue      %prints acknowledgments page, change to \acknowledgmentspagefalse if not needed
-    \copyrightpagefalse            %prints a copy right page, change to \copyrightpagefalse if not needed 
+    \copyrightpagefalse           %prints a copy right page, change to \copyrightpagefalse if not needed
     \sectionnumberstrue           %tells typesetter to print section and subsection numbers, change to \sectionnumbersfalse if not needed   
-    \captiontype=1                %    
+    \captiontype=1                %
     \appendname{APPENDICES}       %change to APPENDIX if only one appendix is needed
     \tocheader{CHAPTER}           %default is CHAPTER: This prints correct header in TOC when Appendices or Appendix are/is needed
                                   %Changing to 'Chapter" will change the header from CHAPTER to Chapter; TTU Graduate School now
                                   %wants 'CHAPTER' instead of 'Chapter' top appear in TOC
-    \bibname{BIBLIOGRAPHY}          %change to BIBLIOGRAPHY if preferred                      
-    %\psfull                      %use with \psfig to print PostScript file 
+    \bibname{BIBLIOGRAPHY}        %change to BIBLIOGRAPHY if preferred
+    %\psfull                      %use with \psfig to print PostScript file
     %\input seteps
     %\input setbmp
     %\input setwmf
@@ -167,8 +167,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\deansname{Mark Stephens}
 \def\gradcommitteechair{Steven Scott}      %NOTE: Grad committee chair becomes
-                                            %      co-chairperson when there is
-                                            %      at least one co-chairperson
+                                           %      co-chairperson when there is
+                                           %      at least one co-chairperson
 %\def\gradcommitteecochair{Rafal Ablamowicz}
 \def\memberB{Adam Anderson}
 \def\memberC{William Eberle}
@@ -272,7 +272,7 @@
 \def\im{\mathop{\mathrm {im}}}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                                                  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \include{abstract}     %reads in your abstract file abstract.tex 
                          
@@ -283,21 +283,20 @@
 \acknowledgmentspage   %creates the acknowledgments page and prints word ACKNOWLEDGMENTS must be 1 inch below the top margin; (aka preface.tex)        
 \include{Epigraph}  
 \afterpreface          %creates pages after the preface but before chapter 1 
-%\include{Nomenclature}           
+%\include{Nomenclature}
 \ttutext               %sets parameters for the actual text, e.g., spacing
-\include{Introduction}     
-\include{ModelDevelopment}   
-\include{DataCollection}    
-\include{DASPAlgorithms}    
-\include{DASPFeatures}   
-\include{DASPConfig}
-\include{DASPClassification}     
-\include{Conclusions}     
-\include{references} 
+\include{ch01_introduction}
+\include{ch02_cyberphysical}
+\include{ch03_anomalydetection}
+\include{ch04_estimatingnormal}
+\include{ch05_alteringattacks}
+\include{ch06_experiments}
+\include{DASPClassification}
+\include{Conclusions}
+\include{references}
 \appendixnodots
-\include{appendixHASPI}   
-\include{appendixDASPImages} 
-\include{vita}   
+\include{appendixHASPI}
+\include{appendixDASPImages}
+\include{vita}
 
-      
-\end{document}   
+\end{document}
