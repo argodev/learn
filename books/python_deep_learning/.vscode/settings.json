@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "~/.virtualenvs/pdl/bin/python",
+    "spellright.language": [
+        "English (American)"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ]
+}
