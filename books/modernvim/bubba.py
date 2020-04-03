@@ -1,0 +1,3 @@
+def mytest:
+	print('hello')
+

@@ -8,3 +8,11 @@
 ***/
 collection = getCollection();
 process(somethingInTheWay, target);
+
+
+<table>
+    <tr>
+        <td>Symbol</td>
+        <td>Name</td>
+    </tr>
+</table>
