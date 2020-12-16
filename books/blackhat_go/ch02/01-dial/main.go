@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	_, err := net.Dial("tcp", "argox1.ornl.gov:21")
+	_, err := net.Dial("tcp", "172.16.130.135:22")
 	if err == nil {
 		fmt.Println("Connection successful")
 	} else {
